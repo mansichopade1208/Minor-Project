@@ -14,6 +14,9 @@ app.get('/', (req, res) => {
 
 //routes
 const placeRouter = require("./routes/placeRoute.js"); 
+const artRouter = require("./routes/artRoute.js");
+const eventRouter = require("./routes/eventRoute.js");
+const cusineRouter = require("./routes/cuisineRoute.js");
 
 // mongoose.connect(process.env.MONGO_URI)
 // .then(() => console.log("MongoDB Connected"))
@@ -21,7 +24,10 @@ const placeRouter = require("./routes/placeRoute.js");
 
 const PORT = 8080; //process.env.PORT || 
 
-app.use("/places", placeRouter)
+app.use("/places", placeRouter);
+app.use("/arts", artRouter);
+app.use("/events", eventRouter);
+app.use("/cuisines", cusineRouter);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
