@@ -18,6 +18,20 @@ const artRouter = require("./routes/artRoute.js");
 const eventRouter = require("./routes/eventRoute.js");
 const cusineRouter = require("./routes/cuisineRoute.js");
 
+const dbUrl = process.env.ATLASDB_URL;
+
+main().then(() => {
+    console.log("connected to DB")
+})
+.catch((err) => {
+    console.log(err);
+});
+
+async function main () {
+    await mongoose.connect(dbUrl);
+};
+
+
 // mongoose.connect(process.env.MONGO_URI)
 // .then(() => console.log("MongoDB Connected"))
 // .catch(err => console.log(err));
