@@ -1,0 +1,54 @@
+.hero-slide {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  color: white;
+}
+
+.hero-content h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  max-width: 700px;
+}
+
+.hero-content p {
+  font-size: 1.3rem;
+  margin-top: 20px;
+  max-width: 600px;
+}
+
+.hero-buttons {
+  margin-top: 30px;
+}
+
+.hero-buttons .btn {
+  padding: 12px 24px;
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .hero-slide {
+    height: 80vh;
+  }
+}
