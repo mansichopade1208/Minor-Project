@@ -6,7 +6,7 @@ import TrendingEvents from './TrendingEvents';
 import ExperiencesHome from './ExperiencesHome';
 import UpcomingEvents from './UpcomingEvents';
 import PopularDestinations from './PopularDestinations';
-import PhotoGallery from './PhotoGallery';
+import GalleryPreview from './GalleryPreview';
 
 export default function HomePage() {
   return (
@@ -18,7 +18,7 @@ export default function HomePage() {
       <ExperiencesHome/>
       <UpcomingEvents/>
       <PopularDestinations/>
-      <PhotoGallery/>
+      <GalleryPreview/>
       <Footer/>
     </>
   );
