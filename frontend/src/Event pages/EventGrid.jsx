@@ -63,7 +63,7 @@ export default function EventGrid() {
           {categories.map((category, index) => (
             <div className="col-md-6 col-lg-4" key={index}>
               <Link
-                to={`/events/category/${category.slug}`}
+                to={`/events/${category.slug}`}
                 className="text-decoration-none"
               >
                 <div className="category-card">
