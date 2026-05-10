@@ -12,7 +12,7 @@ function Placesbytype() {
     const fetchPlaces = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/places/type/${type}`
+          `http://localhost:8080/api/places/type/${type}`,
         );
         setPlaces(res.data);
       } catch (err) {
@@ -31,9 +31,7 @@ function Placesbytype() {
 
   return (
     <div className="container py-5">
-      <h2 className="mb-4 text-center text-capitalize">
-        {type} Places in MP
-      </h2>
+      <h2 className="mb-4 text-center text-capitalize">{type} Places in MP</h2>
 
       <div className="row g-4">
         {places.length === 0 ? (
@@ -45,8 +43,8 @@ function Placesbytype() {
                 className="card shadow-sm h-100 place-card"
                 onClick={() => navigate(`/place/${place._id}`)}
                 style={{ cursor: "pointer" }}
->
-               <img
+              >
+                <img
                   src={`http://localhost:8080${place.image}`}
                   className="card-img-top"
                   style={{ height: "220px", objectFit: "cover" }}

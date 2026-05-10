@@ -26,7 +26,6 @@ function PlaceDetails() {
   return (
     <div className="py-5 bg-light" style={{ minHeight: "100vh" }}>
       <div className="container">
-
         {/* BACK BUTTON */}
         <button
           className="btn btn-dark rounded-pill px-4 py-2 mb-4"
@@ -37,7 +36,6 @@ function PlaceDetails() {
 
         {/* MAIN CARD */}
         <div className="card border-0 shadow-lg rounded-4 overflow-hidden">
-
           {/* IMAGE */}
           <div className="position-relative">
             <img
@@ -55,19 +53,14 @@ function PlaceDetails() {
                   "linear-gradient(to top, rgba(0,0,0,0.8), transparent)",
               }}
             >
-              <h1 className="text-white fw-bold display-5">
-                {place.name}
-              </h1>
+              <h1 className="text-white fw-bold display-5">{place.name}</h1>
 
-              <p className="text-light fs-5 mb-0">
-                📍 {place.location}
-              </p>
+              <p className="text-light fs-5 mb-0">📍 {place.location}</p>
             </div>
           </div>
 
           {/* BODY */}
           <div className="card-body p-4 p-md-5">
-
             {/* BADGES */}
             <div className="mb-4">
               <span className="badge bg-warning text-dark rounded-pill px-4 py-2 fs-6 me-3">
@@ -96,7 +89,6 @@ function PlaceDetails() {
               <h2 className="fw-bold mb-4">Transport Information</h2>
 
               <div className="row g-4">
-
                 {[
                   {
                     icon: "plane-departure",
@@ -117,7 +109,6 @@ function PlaceDetails() {
                   <div className="col-md-4" key={index}>
                     <div className="card border-0 shadow-sm rounded-4 h-100">
                       <div className="card-body text-center p-4">
-
                         <i
                           className={`fa-solid fa-${item.icon} fs-1 text-warning mb-3`}
                         ></i>
@@ -127,12 +118,10 @@ function PlaceDetails() {
                         <p className="text-muted mt-3 mb-0">
                           {item.value || "N/A"}
                         </p>
-
                       </div>
                     </div>
                   </div>
                 ))}
-
               </div>
             </div>
 
@@ -145,7 +134,6 @@ function PlaceDetails() {
             >
               Open in Google Maps
             </a>
-
           </div>
         </div>
       </div>

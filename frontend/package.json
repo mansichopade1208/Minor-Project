@@ -13,10 +13,7 @@
     "axios": "^1.16.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-<<<<<<< HEAD
-=======
     "react-icons": "^5.6.0",
->>>>>>> 7f4c2fef8f023981f0b666afcd20f9acd22edfc7
     "react-router-dom": "^7.15.0"
   },
   "devDependencies": {
