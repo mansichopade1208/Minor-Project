@@ -2,7 +2,7 @@ export default function NavBar() {
   return (
     <nav class="navbar navbar-expand-lg bg-body-tertiary  border-bottom sticky-top" data-bs-theme="dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
           MP Tourism
         </a>
         <button
@@ -18,13 +18,13 @@ export default function NavBar() {
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link" aria-current="page" href="#">
-              Desitinations
+            <a class="nav-link" aria-current="page" href="/destination">
+              Destinations
             </a>
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/plan">
               Plan Your Trip
             </a>
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/experience">
               Experiences
             </a>
           </div>

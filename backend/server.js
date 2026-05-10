@@ -3,46 +3,39 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 
-const app = express();
+const placeRoutes = require("./routes/placeroute");
+const artRoutes = require("./routes/artroute");
 
+
+const app = express();
 app.use(cors());
 app.use(express.json());
+
+const upload = require("./middleware/upload");
+app.use("/uploads", express.static("uploads"));
+
+
 
 app.get('/', (req, res) => {
     res.send('MP Tourism API is running');
 });
 
-//routes
-const placeRouter = require("./routes/placeRoute.js"); 
-const artRouter = require("./routes/artRoute.js");
-const eventRouter = require("./routes/eventRoute.js");
-const cusineRouter = require("./routes/cuisineRoute.js");
+app.use("/api/places", placeRoutes);
+app.use("/api/art", artRoutes);
 
-const dbUrl = process.env.ATLASDB_URL;
 
-main().then(() => {
-    console.log("connected to DB")
+
+console.log("MONGO URI =", process.env.MONGO_URI);
+
+mongoose.connect(process.env.MONGO_URI)
+.then(() => {
+    console.log("MongoDB Connected");
+
+    const PORT = process.env.PORT || 5000;
+
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
 })
-.catch((err) => {
-    console.log(err);
-});
+.catch(err => console.log(err));
 
-async function main () {
-    await mongoose.connect(dbUrl);
-};
-
-
-// mongoose.connect(process.env.MONGO_URI)
-// .then(() => console.log("MongoDB Connected"))
-// .catch(err => console.log(err));
-
-const PORT = 8080; //process.env.PORT || 
-
-app.use("/places", placeRouter);
-app.use("/arts", artRouter);
-app.use("/events", eventRouter);
-app.use("/cuisines", cusineRouter);
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
