@@ -4,6 +4,7 @@ import SearchBar from "../components/SearchBar";
 import { categoriesData } from "../data/Categories";
 import CategoryCard from "../components/CategoryCard";
 
+
 function Destination() {
 
     const [activeCategory, setActiveCategory] = useState("attractions");
