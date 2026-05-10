@@ -3,21 +3,28 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 
-const app = express();
+// const placeRoutes = require("./routes/placeroute");
+// const artRoutes = require("./routes/artroute");
 
+
+const app = express();
 app.use(cors());
 app.use(express.json());
 
+const upload = require("./middleware/upload");
+app.use("/uploads", express.static("uploads"));
+
+//homepage
 app.get('/', (req, res) => {
     res.send('MP Tourism API is running');
 });
 
-//homepage
-app.get("/", async (req, res) => {
-  res.json({
-    message: "Homepage data",
-  });
-});
+
+// app.get("/", async (req, res) => {
+//   res.json({
+//     message: "Homepage data",
+//   });
+// });
 
 //routes
 const placeRouter = require("./routes/placeRoute.js"); 
@@ -53,3 +60,4 @@ app.use("/cuisines", cusineRouter);
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
