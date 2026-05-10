@@ -12,6 +12,13 @@ app.get('/', (req, res) => {
     res.send('MP Tourism API is running');
 });
 
+//homepage
+app.get("/", async (req, res) => {
+  res.json({
+    message: "Homepage data",
+  });
+});
+
 //routes
 const placeRouter = require("./routes/placeRoute.js"); 
 const artRouter = require("./routes/artRoute.js");
