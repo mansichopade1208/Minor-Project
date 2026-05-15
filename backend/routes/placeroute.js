@@ -16,7 +16,7 @@ prouter.get("/", async (req, res) => {
 });
 
 
-prouter.get("/:id", async (req,res)=>{
+prouter.get("/detail/:id", async (req,res)=>{
 
   try{
     const place=await Place.findById(req.params.id);

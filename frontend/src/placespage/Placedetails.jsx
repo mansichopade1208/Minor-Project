@@ -10,7 +10,7 @@ function PlaceDetails() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/places/${id}`)
+      .get(`http://localhost:8080/destination/detail/${id}`)
       .then((res) => setPlace(res.data))
       .catch((err) => console.log(err));
   }, [id]);
@@ -125,15 +125,37 @@ function PlaceDetails() {
               </div>
             </div>
 
-            {/* MAP BUTTON */}
-            <a
-              href={`https://www.google.com/maps?q=${place.coordinates?.lat},${place.coordinates?.lng}`}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-warning px-4 py-2 rounded-pill"
-            >
-              Open in Google Maps
-            </a>
+
+              <div className="mb-5">
+                <h2 className="fw-bold mb-4">
+                  Location on Map
+                </h2>
+                <div className="rounded-4 overflow-hidden shadow">
+                  <iframe
+                    title="google-map"
+                    width="100%"
+                    height="450"
+                    style={{
+                      border: 0
+                    }}
+                    loading="lazy"
+                    allowFullScreen
+                    src={`https://www.google.com/maps?q=${place.name}, ${place.location}&z=15&output=embed`}
+                  ></iframe>
+                </div>
+                <div className="mt-4">
+                  <a
+                    href={`https://www.google.com/maps?q=${place.name}, ${place.location}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn btn-warning px-4 py-2 rounded-pill fw-semibold"
+                  >
+                    <i className="fa-solid fa-location-dot me-2"></i>
+                    Open in Google Maps
+                  </a>
+                </div>
+              </div>
+
           </div>
         </div>
       </div>

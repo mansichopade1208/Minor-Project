@@ -11,12 +11,16 @@ import PlanTrip from "./Planpages/PlanTrip";
 import HowToReach from "./Planpages/HowToReach";
 import Itinerary from "./Planpages/Itinerary";
 import ItineraryResult from "./Planpages/ItineraryResult";
+import WhereToStay from "./Planpages/WhereToStay";
+import HotelDetails from "./Planpages/HotelDetails";
+import ChatBot from "./components/ChatBot";
 
 
 function App() {
   return (
    <>
       <NavBar />
+      
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/events" element={<EventPage />} />
@@ -28,7 +32,10 @@ function App() {
         <Route path="/how-to-reach" element={<HowToReach/>} />
         <Route path="/itinerary" element={<Itinerary />}/>
         <Route path="/itineraryresult" element={<ItineraryResult/>}/>
+        <Route path="/hotels" element={<WhereToStay/>}/>
+        <Route path="/hotel/:id" element={<HotelDetails/>}/>
       </Routes>
+      <ChatBot/>
       </>
     
   );

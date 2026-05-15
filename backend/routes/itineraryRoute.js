@@ -1,14 +1,7 @@
 const express = require("express");
+const irouter = express.Router();
+const {generateItinerary,} = require("../controllers/itinerary");
 
-const router = express.Router();
+irouter.post("/generate-itinerary",generateItinerary);
 
-const {
-  generateItinerary,
-} = require("../controllers/itinerary");
-
-router.post(
-  "/generate-itinerary",
-  generateItinerary
-);
-
-module.exports = router;
+module.exports = irouter;

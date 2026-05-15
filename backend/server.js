@@ -14,7 +14,8 @@ const artRouter = require("./routes/artroute");
 const itineraryRouter =require ("./routes/itineraryRoute");
 const eventRouter=require("./routes/eventRoute");
 const cuisineRouter=require("./routes/cuisineRoute");
-const Cuisine = require('./models/Cuisine');
+const hotelRouter=require("./routes/hotelRoute")
+const chatRouter=require("./routes/chatbot")
 
 
 app.use("/uploads", express.static("uploads"));
@@ -23,12 +24,13 @@ app.get('/', (req, res) => {
     res.send('MP Tourism API is running');
 });
 
-app.use("/api/places", placeRouter);
+app.use("/destination", placeRouter);
 app.use("/ai", itineraryRouter);
 app.use("/api/art", artRouter);
-app.use("events",eventRouter);
+app.use("/events",eventRouter);
 app.use("/cuisines",cuisineRouter);
-
+app.use("/hotels" , hotelRouter );
+app.use("/ai",chatRouter);
 
 
 mongoose.connect(process.env.MONGO_URI)
