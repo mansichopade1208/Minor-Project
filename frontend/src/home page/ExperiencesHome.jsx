@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./ExperiencesHome.css";
+import { Link } from "react-router-dom";
 
 export default function Experiences() {
   const experiences = [
@@ -73,9 +74,11 @@ export default function Experiences() {
                 {activeExperience.description}
               </p>
 
-              <button className="btn btn-success explore-btn">
-                Explore More
-              </button>
+              <Link to="/experiences">
+                <button className="btn btn-success explore-btn">
+                  Explore More
+                </button>
+              </Link>
             </div>
           </div>
 

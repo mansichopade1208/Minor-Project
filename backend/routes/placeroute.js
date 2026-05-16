@@ -34,7 +34,7 @@ prouter.get("/detail/:id", async (req,res)=>{
   }
 });
 
-prouter.get("/category/:category", async (req, res) => {
+prouter.get("/:category", async (req, res) => {
 
   try {
 
@@ -51,6 +51,7 @@ prouter.get("/category/:category", async (req, res) => {
     })
   }
 });
+
 prouter.get("/type/:type", async (req, res) => {
   try {
     const type = req.params.type;

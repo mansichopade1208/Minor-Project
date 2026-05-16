@@ -10,7 +10,7 @@ function CategoryCard(props) {
       className="col-lg-4 col-md-6"
       onClick={() =>
         navigate(
-          `/destination/${props.category}/${props.title.toLowerCase()}`
+          `/destination/${props.title.toLowerCase()}`
         )
       }
       style={{ cursor: "pointer" }}
