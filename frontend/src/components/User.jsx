@@ -24,17 +24,7 @@ function User() {
     navigate("/");
   };
 
-  const handleTrips = () => {
-
-    if (!token) {
-
-      navigate("/login");
-
-      return;
-    }
-
-    navigate("/my-trips");
-  };
+  
 
   return (
 
@@ -84,16 +74,7 @@ function User() {
 
             </li>
 
-            <li>
-
-              <button
-                className="dropdown-item rounded-3 py-2"
-                onClick={handleTrips}
-              >
-              My Trips
-              </button>
-
-            </li>
+            
           </>
 
         ) : (
@@ -107,16 +88,7 @@ function User() {
 
             </li>
 
-            <li>
-
-              <button
-                className="dropdown-item rounded-3 py-2"
-                onClick={handleTrips}
-              >
-                My Trips
-              </button>
-
-            </li>
+           
 
             <li>
 

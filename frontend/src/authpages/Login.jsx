@@ -35,7 +35,23 @@ function Login() {
       );
 
       alert("Login Successful");
-      navigate("/");
+      const redirectPath =
+  localStorage.getItem(
+    "redirectAfterLogin"
+  );
+
+if (redirectPath) {
+
+  localStorage.removeItem(
+    "redirectAfterLogin"
+  );
+
+  navigate(redirectPath);
+
+} else {
+
+  navigate("/");
+}
     } catch (error) {
       console.log(error);
       alert(error.response.data.message);

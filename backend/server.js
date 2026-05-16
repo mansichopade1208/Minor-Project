@@ -18,6 +18,7 @@ const hotelRouter=require("./routes/hotelRoute")
 const chatRouter=require("./routes/chatbot")
 const authRouter=require("./routes/auth")
 
+
 app.use("/uploads", express.static("uploads"));
 
 app.get('/', (req, res) => {
@@ -32,6 +33,7 @@ app.use("/cuisines",cuisineRouter);
 app.use("/hotels" , hotelRouter );
 app.use("/ai",chatRouter);
 app.use("/auth",authRouter);
+
 
 
 mongoose.connect(process.env.MONGO_URI)

@@ -45,6 +45,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/experiences" element={<ExperiencesPage/>} />
         <Route path="/experiences/detail/:id" element={<ExperienceDetails />}/>
+        
 
       </Routes>
       <ChatBot/>
