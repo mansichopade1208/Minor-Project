@@ -6,4 +6,4 @@ const cuisineSchema = new mongoose.Schema({
   image: String
 });
 
-module.exports = mongoose.model("Cuisine", cuisineSchema);
+module.exports = mongoose.models.Cuisine || mongoose.model("Cuisine", cuisineSchema);

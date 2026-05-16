@@ -1,0 +1,66 @@
+.travel-rec-section {
+    background: #081120;
+    padding: 100px 0;
+    color: white;
+}
+
+.travel-rec-heading {
+    margin-bottom: 70px;
+}
+
+.travel-rec-heading span {
+    color: #7cc6fe;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px;
+}
+
+.travel-rec-heading h2 {
+    font-size: 3rem;
+    margin: 20px 0;
+    font-weight: 700;
+}
+
+.travel-rec-heading p {
+    max-width: 700px;
+    margin: auto;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.8;
+}
+
+.travel-rec-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    padding: 40px 30px;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: 0.3s ease;
+    backdrop-filter: blur(14px);
+}
+
+.travel-rec-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.travel-rec-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.travel-rec-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.travel-rec-card p {
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.8;
+}

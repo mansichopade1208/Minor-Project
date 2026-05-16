@@ -28,10 +28,32 @@ export default function HomePage() {
   }, []);
 
   if (!data) {
-  return <p>Loading...</p>;
+  return (
+    <div
+      className="vh-100 d-flex flex-column justify-content-center align-items-center"
+      style={{
+        background: "linear-gradient(to right, #232526, #414345)"
+      }}
+    >
+      <div
+        className="spinner-grow text-success"
+        style={{ width: "5rem", height: "5rem" }}
+        role="status"
+      >
+        <span className="visually-hidden">Loading...</span>
+      </div>
+
+      <h4
+        className="mt-4 fw-bold"
+        style={{ color: "#f5f5f5", letterSpacing: "1px" }}
+      >
+        Discovering Incredible Places...
+      </h4>
+    </div>
+  );
 }
 
-console.log(data);
+  console.log(data);
 
   return (
     <>

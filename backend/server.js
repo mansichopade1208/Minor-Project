@@ -14,9 +14,10 @@ const artRouter = require("./routes/artroute");
 const itineraryRouter =require ("./routes/itineraryRoute");
 const eventRouter=require("./routes/eventRoute");
 const cuisineRouter=require("./routes/cuisineRoute");
-const hotelRouter=require("./routes/hotelRoute")
-const chatRouter=require("./routes/chatbot")
-
+const hotelRouter=require("./routes/hotelRoute");
+const chatRouter=require("./routes/chatbot");
+const experienceRouter = require("./routes/experienceRoute");
+// const weatherRouter = require("./routes/weatherRoutes.js") ;
 
 app.use("/uploads", express.static("uploads"));
 
@@ -31,6 +32,8 @@ app.use("/events",eventRouter);
 app.use("/cuisines",cuisineRouter);
 app.use("/hotels" , hotelRouter );
 app.use("/ai",chatRouter);
+app.use("/experiences", experienceRouter);
+// app.use("/weather", weatherRouter);
 
 
 mongoose.connect(process.env.MONGO_URI)
