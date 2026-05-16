@@ -8,6 +8,8 @@ function Login() {
     email: "",
     password: "",
   });
+  const [attempts, setAttempts] = useState(0);
+  const [isLocked, setIsLocked] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -18,33 +20,46 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isLocked) {
+      alert("Too many failed attempts. Please wait 15 minutes before trying again.");
+      return;
+    }
+    
+    if (!formData.email || !formData.password) {
+      alert("Email and password are required.");
+      return;
+    }
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+    
+    if (formData.password.length < 8) {
+      alert("Password must be at least 8 characters.");
+      return;
+    }
     try {
       const res = await axios.post(
         "http://localhost:8080/auth/login",
         formData
       );
 
-      localStorage.setItem(
-        "token",
-        res.data.token
-      );
-
-      localStorage.setItem(
-        "user",
-        JSON.stringify(res.data.user)
-      );
+      sessionStorage.setItem("token", res.data.token);
+      sessionStorage.setItem("user", JSON.stringify(res.data.user));
 
       alert("Login Successful");
+      setAttempts(0);
       const redirectPath =
-  localStorage.getItem(
-    "redirectAfterLogin"
-  );
+        sessionStorage.getItem(
+          "redirectAfterLogin"
+          );
 
 if (redirectPath) {
-
-  localStorage.removeItem(
+  
+  sessionStorage.removeItem(
     "redirectAfterLogin"
-  );
 
   navigate(redirectPath);
 
@@ -52,11 +67,20 @@ if (redirectPath) {
 
   navigate("/");
 }
-    } catch (error) {
-      console.log(error);
-      alert(error.response.data.message);
-    }
-  };
+    } } catch (error) {
+  const newAttempts = attempts + 1;
+  setAttempts(newAttempts);
+  if (newAttempts >= 5) {
+    setIsLocked(true);
+    alert("Your account has been temporarily locked due to too many failed attempts. Please try again after 15 minutes.");
+    setTimeout(() => {
+      setIsLocked(false);
+      setAttempts(0);
+    }, 15 * 60 * 1000);
+  } else {
+    alert(`Invalid email or password. ${5 - newAttempts} attempts remaining.`);
+  }
+};
 
   return (
     <div className="container py-5">
@@ -81,7 +105,7 @@ if (redirectPath) {
                 className="form-control mb-3"
                 onChange={handleChange}
               />
-              <button className="btn btn-dark w-100 rounded-pill">
+              <button className="btn btn-dark w-100 rounded-pill" disabled={isLocked}>
                 Login
               </button>
             </form>
