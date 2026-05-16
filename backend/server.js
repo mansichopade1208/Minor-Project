@@ -16,7 +16,7 @@ const eventRouter=require("./routes/eventRoute");
 const cuisineRouter=require("./routes/cuisineRoute");
 const hotelRouter=require("./routes/hotelRoute")
 const chatRouter=require("./routes/chatbot")
-
+const authRouter=require("./routes/auth")
 
 app.use("/uploads", express.static("uploads"));
 
@@ -31,6 +31,7 @@ app.use("/events",eventRouter);
 app.use("/cuisines",cuisineRouter);
 app.use("/hotels" , hotelRouter );
 app.use("/ai",chatRouter);
+app.use("/auth",authRouter);
 
 
 mongoose.connect(process.env.MONGO_URI)

@@ -1,3 +1,4 @@
+import User from "./User";
 export default function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary  border-bottom sticky-top" data-bs-theme="dark">
@@ -30,6 +31,7 @@ export default function NavBar() {
           </div>
         </div>
       </div>
+      <User />
     </nav>
   );
 }

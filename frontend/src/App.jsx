@@ -14,13 +14,16 @@ import ItineraryResult from "./Planpages/ItineraryResult";
 import WhereToStay from "./Planpages/WhereToStay";
 import HotelDetails from "./Planpages/HotelDetails";
 import ChatBot from "./components/ChatBot";
+import Signup from "./authpages/Signup";
+import Login from "./authpages/login";
+import User from "./components/User";
 
 
 function App() {
   return (
    <>
       <NavBar />
-      
+      <User />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/events" element={<EventPage />} />
@@ -34,6 +37,8 @@ function App() {
         <Route path="/itineraryresult" element={<ItineraryResult/>}/>
         <Route path="/hotels" element={<WhereToStay/>}/>
         <Route path="/hotel/:id" element={<HotelDetails/>}/>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <ChatBot/>
       </>
