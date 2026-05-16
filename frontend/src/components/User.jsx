@@ -68,7 +68,7 @@ function User() {
                 className="dropdown-item rounded-3 py-2"
                 to="/login"
               >
-                🔐 Login
+              Login
               </Link>
 
             </li>
@@ -79,7 +79,7 @@ function User() {
                 className="dropdown-item rounded-3 py-2"
                 to="/signup"
               >
-                ✨ Signup
+              Signup
               </Link>
 
             </li>
@@ -90,7 +90,7 @@ function User() {
                 className="dropdown-item rounded-3 py-2"
                 onClick={handleTrips}
               >
-                🧳 My Trips
+              My Trips
               </button>
 
             </li>
@@ -113,7 +113,7 @@ function User() {
                 className="dropdown-item rounded-3 py-2"
                 onClick={handleTrips}
               >
-                🧳 My Trips
+                My Trips
               </button>
 
             </li>
@@ -124,7 +124,7 @@ function User() {
                 className="dropdown-item rounded-3 py-2"
                 onClick={handleLogout}
               >
-                🚪 Logout
+              Logout
               </button>
 
             </li>
