@@ -6,6 +6,6 @@ const eventsController = require("../controllers/events.js");
 //get all events
 eRouter.get("/", eventsController.allEvents);
 
-eRouter.get("/:id", eventsController.showEvent);
+eRouter.get("/detail/:id", eventsController.showEvent);
 
 module.exports = eRouter;

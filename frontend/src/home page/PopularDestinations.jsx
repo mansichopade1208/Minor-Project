@@ -107,7 +107,7 @@ export default function PopularDestinations() {
           </div>
 
           {/* BUTTON */}
-          <button className="btn btn-outline-success explore-btn">
+          <button className="btn btn-outline-success explore-btn-pd">
             Explore More
           </button>
         </div>

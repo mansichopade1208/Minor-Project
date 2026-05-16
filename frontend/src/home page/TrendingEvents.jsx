@@ -1,4 +1,5 @@
 import "./TrendingEvents.css";
+import { Link } from "react-router-dom";
 
 export default function TrendingEvents() {
   const events = [
@@ -6,8 +7,7 @@ export default function TrendingEvents() {
       title: "Khajuraho Dance Festival",
       date: "12 Feb 2026",
       location: "Khajuraho",
-      image:
-        "https://images.unsplash.com/photo-1514525253161-7a46d19cd819",
+      image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819",
       description:
         "Experience classical dance performances beside ancient temples.",
       featured: true,
@@ -16,19 +16,15 @@ export default function TrendingEvents() {
       title: "Tribal Art Fair",
       date: "20 March 2026",
       location: "Bhopal",
-      image:
-        "https://images.unsplash.com/photo-1529156069898-49953e39b3ac",
-      description:
-        "Discover tribal paintings, crafts and folk traditions.",
+      image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac",
+      description: "Discover tribal paintings, crafts and folk traditions.",
     },
     {
       title: "Food & Culture Carnival",
       date: "5 April 2026",
       location: "Indore",
-      image:
-        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
-      description:
-        "Taste authentic cuisine and enjoy cultural performances.",
+      image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
+      description: "Taste authentic cuisine and enjoy cultural performances.",
     },
   ];
 
@@ -56,17 +52,15 @@ export default function TrendingEvents() {
             >
               <div className="event-overlay">
                 <div className="event-content">
-                  <span className="event-date">
-                    {featuredEvent.date}
-                  </span>
+                  <span className="event-date">{featuredEvent.date}</span>
 
                   <h2>{featuredEvent.title}</h2>
 
                   <p>{featuredEvent.description}</p>
 
-                  <button className="btn btn-success">
-                    Explore Event
-                  </button>
+                  <Link to={`/events/detail/${event._id}`}>
+                    <button className="btn btn-success">Explore Event</button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -76,25 +70,29 @@ export default function TrendingEvents() {
           <div className="col-lg-5">
             <div className="d-flex flex-column gap-4">
               {sideEvents.map((event, index) => (
-                <div
+                <Link
                   key={index}
-                  className="side-event"
-                  style={{
-                    backgroundImage: `url(${event.image})`,
-                  }}
+                  to={`/events/detail/${event._id}`}
+                  className="text-decoration-none"
                 >
-                  <div className="event-overlay">
-                    <div className="event-content">
-                      <span className="event-date">
-                        {event.date}
-                      </span>
+                  <div
+                    key={index}
+                    className="side-event"
+                    style={{
+                      backgroundImage: `url(${event.image})`,
+                    }}
+                  >
+                    <div className="event-overlay">
+                      <div className="event-content">
+                        <span className="event-date">{event.date}</span>
 
-                      <h4>{event.title}</h4>
+                        <h4>{event.title}</h4>
 
-                      <p>{event.location}</p>
+                        <p>{event.location}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

@@ -25,7 +25,7 @@ export default function NavBar() {
             <a className="nav-link" href="/plan">
               Plan Your Trip
             </a>
-            <a className="nav-link" href="/experience">
+            <a className="nav-link" href="/experiences">
               Experiences
             </a>
           </div>

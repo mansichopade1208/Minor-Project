@@ -46,27 +46,31 @@
 /* RIGHT SIDE */
 
 .experience-slider {
+    width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 /* CARDS CONTAINER */
 
 .cards-wrapper {
+    width: 100%;
   display: flex;
   gap: 30px;
 
   justify-content: center;
   align-items: center;
+  
+  flex-wrap: nowrap;
 }
 
 /* CARD */
 
 .experience-card {
-  width: 280px;
-  height: 500px;
-
+  width: 280px !important; 
+  height: 500px !important;
   border-radius: 28px;
 
   background-size: cover;
@@ -74,6 +78,7 @@
 
   position: relative;
   overflow: hidden;
+  
 
   transition: all 0.4s ease;
 
