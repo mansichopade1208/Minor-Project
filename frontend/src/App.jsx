@@ -7,6 +7,7 @@ import PlaceDetails from './placespage/Placedetails'
 import HomePage from './home page/HomePage'
 import EventPage from './Event pages/EventPage'
 import CategoryEventsPage from './Event pages/CategoryEventsPage'
+import EventDetailPage  from './Event pages/EventDetailPage'
 import PlanTrip from "./Planpages/PlanTrip";
 import HowToReach from "./Planpages/HowToReach";
 import Itinerary from "./Planpages/Itinerary";
@@ -14,9 +15,10 @@ import ItineraryResult from "./Planpages/ItineraryResult";
 import WhereToStay from "./Planpages/WhereToStay";
 import HotelDetails from "./Planpages/HotelDetails";
 import ChatBot from "./components/ChatBot";
+import Signup from "./authpages/Signup";
+import Login from "./authpages/login";
 import ExperiencesPage from "./experience/ExperiencesPage";
 import ExperienceDetails from "./experience/ExperienceDetails";
-import EventDetailPage from "./Event pages/EventDetailPage";
 
 
 
@@ -31,16 +33,20 @@ function App() {
         <Route path="/events/:category" element={<CategoryEventsPage />} />
         <Route path="/events/detail/:id" element={<EventDetailPage />}/>
         <Route path="/destination" element={<Destination />} />
+        <Route path="/place/:id" element={<PlaceDetails />} />
         <Route path="/destination/:type" element={<Placesbytype />} />
-        <Route path="/destination/detail/:id" element={<PlaceDetails />} />
         <Route path="/plan" element={<PlanTrip />} />
         <Route path="/how-to-reach" element={<HowToReach/>} />
         <Route path="/itinerary" element={<Itinerary />}/>
         <Route path="/itineraryresult" element={<ItineraryResult/>}/>
         <Route path="/hotels" element={<WhereToStay/>}/>
         <Route path="/hotel/:id" element={<HotelDetails/>}/>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/experiences" element={<ExperiencesPage/>} />
         <Route path="/experiences/detail/:id" element={<ExperienceDetails />}/>
+        
+
       </Routes>
       <ChatBot/>
       </>
