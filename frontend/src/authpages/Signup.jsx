@@ -19,6 +19,33 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!formData.name || !formData.email || !formData.password) {
+      alert("All fields are required.");
+      return;
+    }
+    
+    if (formData.name.trim().length < 2) {
+      alert("Please enter a valid name.");
+      return;
+    }
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+    if (formData.password.length < 8) {
+      alert("Password must be at least 8 characters.");
+      return;
+    }
+    
+    const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])/;
+    if (!passwordRegex.test(formData.password)) {
+      alert("Password must contain at least one number and one special character.");
+      return;
+    }
+    
     try {
       const res = await axios.post(
         "http://localhost:8080/auth/signup",
@@ -27,7 +54,6 @@ function Signup() {
       alert(res.data.message);
       navigate("/login");
     } catch (error) {
-      console.log(error);
       alert(error.response.data.message);
     }
   };
