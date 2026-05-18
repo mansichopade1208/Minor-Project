@@ -51,7 +51,7 @@ function Placesbytype() {
             }}
           >
             <img
-              src={`http://localhost:8080${place.image}`}
+              src={place.image}
               alt={place.name}
               className="w-100 h-100 object-fit-cover"
             />

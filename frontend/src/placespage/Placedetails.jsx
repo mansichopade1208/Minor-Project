@@ -39,7 +39,7 @@ function PlaceDetails() {
           {/* IMAGE */}
           <div className="position-relative">
             <img
-              src={`http://localhost:8080${place.image}`}
+              src={place.image}
               alt={place.name}
               className="w-100"
               style={{ height: "550px", objectFit: "cover" }}

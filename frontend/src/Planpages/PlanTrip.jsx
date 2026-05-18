@@ -30,14 +30,14 @@ function PlanTrip() {
       path: "/weather",
     },
     {
-      title: "Saved Places",
-      icon: "fa-solid fa-heart",
-      path: "/saved",
+      title: "Tour Guides",
+      icon: "fa-solid fa-user-tie",
+      path: "/tour-guide",
     },
     {
-      title: "Nearby Attractions",
+      title: "Emergency Contacts",
       icon: "fa-solid fa-location-dot",
-      path: "/nearby",
+      path: "/emergency-contacts",
     },
     {
       title: "Tourist Map",
