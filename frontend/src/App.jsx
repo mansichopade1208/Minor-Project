@@ -19,6 +19,12 @@ import Signup from "./authpages/Signup";
 import Login from "./authpages/login";
 import ExperiencesPage from "./experience/ExperiencesPage";
 import ExperienceDetails from "./experience/ExperienceDetails";
+import TourGuide from "./Planpages/TourGuide"
+import Emergency from "./Planpages/EmergencyContact";
+import Cities from "./placespage/Cities";
+import District from "./placespage/District";
+import DistcityDetail from "./placespage/DistcityDetail";
+
 
 function App() {
   return (
@@ -40,8 +46,14 @@ function App() {
         <Route path="/hotel/:id" element={<HotelDetails />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/experiences" element={<ExperiencesPage />} />
-        <Route path="/experiences/detail/:id" element={<ExperienceDetails />} />
+        <Route path="/experiences" element={<ExperiencesPage/>} />
+        <Route path="/experiences/detail/:id" element={<ExperienceDetails />}/>
+        <Route path="/tour-guide" element={<TourGuide/>}/>
+        <Route path="/emergency-contacts" element={<Emergency/>}/>
+        <Route path="/destination/district" element={<District/>}/>
+        <Route path="/destination/city" element={<Cities/>}/>
+        <Route path="/destination/:type/:name" element={<DistcityDetail/>}/>
+
       </Routes>
       <ChatBot />
     </>

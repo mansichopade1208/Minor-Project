@@ -62,36 +62,5 @@ prouter.get("/type/:type", async (req, res) => {
 });
 
 
-prouter.post("/", upload.single("image"), async (req, res) => {
-  try {
-    const newPlace = new Place({
-      name: req.body.name,
-      category: req.body.category,
-      type: req.body.type,
-      location: req.body.location,
-      description: req.body.description,
 
-      image: req.file
-        ? `/uploads/${req.file.filename}`
-        : "",
-
-      coordinates: {
-        lat: req.body.lat,
-        lng: req.body.lng,
-      },
-
-      transport: {
-        nearestAirport: req.body.nearestAirport,
-        nearestRailway: req.body.nearestRailway,
-        roadAccess: req.body.roadAccess,
-      },
-    });
-
-    await newPlace.save();
-
-    res.status(201).json(newPlace);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
 module.exports = prouter;

@@ -1,12 +1,16 @@
 import { useState } from "react";
-
+import cities from "../data/cities";
+import districts from "../data/district";
+import { useNavigate } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import { categoriesData } from "../data/Categories";
 import CategoryCard from "../components/CategoryCard";
 
 
 function Destination() {
+  const [regionTab, setRegionTab] = useState("city"); 
   const [activeCategory, setActiveCategory] = useState("attractions");
+  const navigate = useNavigate();
   return (
     <>
       <div className="d-flex justify-content-center flex-wrap gap-5 mt-5">

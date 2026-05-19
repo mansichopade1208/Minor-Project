@@ -8,7 +8,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const upload = require("./middleware/upload");
 const placeRouter = require("./routes/placeroute");
 const artRouter = require("./routes/artroute");
 const itineraryRouter =require ("./routes/itineraryRoute");
@@ -21,7 +20,6 @@ const experienceRouter = require("./routes/experienceRoute");
 const authRouter=require("./routes/auth")
 
 
-app.use("/uploads", express.static("uploads"));
 
 app.get('/', (req, res) => {
     res.send('MP Tourism API is running');
