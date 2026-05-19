@@ -1,7 +1,7 @@
 const express = require("express");
 const prouter = express.Router();
 const Place = require("../models/place");
-const upload = require("../middleware/upload");
+
 
 prouter.get("/", async (req, res) => {
   try{

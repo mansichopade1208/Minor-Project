@@ -19,15 +19,13 @@ import Signup from "./authpages/Signup";
 import Login from "./authpages/login";
 import ExperiencesPage from "./experience/ExperiencesPage";
 import ExperienceDetails from "./experience/ExperienceDetails";
-<<<<<<< HEAD
 import TourGuide from "./Planpages/TourGuide"
 import Emergency from "./Planpages/EmergencyContact";
 import Cities from "./placespage/Cities";
 import District from "./placespage/District";
 import DistcityDetail from "./placespage/DistcityDetail";
-=======
 
->>>>>>> 37e52366fd06ad73a96cb38157ff5cea0ed99ae3
+
 
 function App() {
   return (
@@ -57,7 +55,6 @@ function App() {
         <Route path="/destination/district" element={<District/>}/>
         <Route path="/destination/city" element={<Cities/>}/>
         <Route path="/destination/:type/:name" element={<DistcityDetail/>}/>
-
       </Routes>
       <ChatBot />
     </>
