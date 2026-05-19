@@ -1,54 +1,125 @@
-.hero-slide {
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
+.hero-slide-hhero {
   position: relative;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.overlay {
-  background: rgba(0, 0, 0, 0.5);
-  height: 100%;
+.hero-media-hhero {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+}
+
+.overlay-hhero {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0.35)
+  );
   display: flex;
   align-items: center;
 }
 
-.hero-content {
+.hero-content-hhero {
   color: white;
-}
-
-.hero-content h1 {
-  font-size: 4rem;
-  font-weight: bold;
   max-width: 700px;
+  padding-left: 40px;
+  margin-top: -40px;
 }
 
-.hero-content p {
-  font-size: 1.3rem;
-  margin-top: 20px;
-  max-width: 600px;
+.hero-tag-hhero {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-.hero-buttons {
-  margin-top: 30px;
+.hero-content-hhero h1 {
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
 }
 
-.hero-buttons .btn {
-  padding: 12px 24px;
+.hero-content-hhero p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  max-width: 550px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-buttons-hhero {
+  margin-top: 35px;
+}
+
+.hero-buttons-hhero .btn {
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: 600;
   font-size: 1rem;
 }
 
-/* Responsive */
+/* Better Arrows */
+
+.hero-control-hhero {
+  width: 60px;
+  height: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  opacity: 1;
+}
+
+.carousel-control-prev.hero-control-hhero {
+  left: 25px;
+}
+
+.carousel-control-next.hero-control-hhero {
+  right: 25px;
+}
+
+.hero-control-hhero:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Indicators */
+
+.carousel-indicators [data-bs-target] {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin: 0 6px;
+}
+
+/* Mobile */
+
 @media (max-width: 768px) {
-  .hero-content h1 {
-    font-size: 2.5rem;
+  .hero-content-hhero {
+    padding: 20px;
+    margin-top: 0;
   }
 
-  .hero-content p {
+  .hero-content-hhero h1 {
+    font-size: 2.6rem;
+  }
+
+  .hero-content-hhero p {
     font-size: 1rem;
   }
 
-  .hero-slide {
-    height: 80vh;
+  .hero-control-hhero {
+    width: 45px;
+    height: 45px;
   }
 }

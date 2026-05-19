@@ -1,11 +1,18 @@
-import "../index.css";
+import {
+  FaPlaneDeparture,
+  FaTrain,
+  FaRoad,
+  FaCircleCheck,
+} from "react-icons/fa6";
+
+import "./HowToReach.css";
 
 function HowToReach() {
+
   const travelOptions = [
     {
       title: "By Air",
-      icon: "fa-solid fa-plane-departure",
-      color: "#ffb703",
+      icon: <FaPlaneDeparture />,
       details: [
         "Major airports: Bhopal, Indore, Jabalpur & Gwalior",
         "Direct flights from Delhi, Mumbai & Bangalore",
@@ -14,8 +21,7 @@ function HowToReach() {
     },
     {
       title: "By Train",
-      icon: "fa-solid fa-train",
-      color: "#219ebc",
+      icon: <FaTrain />,
       details: [
         "Well connected railway network across India",
         "Major stations: Bhopal, Itarsi & Jabalpur",
@@ -24,8 +30,7 @@ function HowToReach() {
     },
     {
       title: "By Road",
-      icon: "fa-solid fa-road",
-      color: "#2a9d8f",
+      icon: <FaRoad />,
       details: [
         "Connected through NH-44 & NH-46",
         "Luxury buses and interstate transport available",
@@ -58,90 +63,86 @@ function HowToReach() {
   ];
 
   return (
-    <div style={{ background: "#f8f9fa" }}>
-      
-      {/* HERO */}
-      <div
-        className="d-flex align-items-center justify-content-center text-white text-center"
-        style={{
-          height: "85vh",
-          backgroundImage:
-            "linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
+    <div className="htr-page-pp">
+
+      {/* HERO SECTION */}
+
+      <div className="htr-hero-pp d-flex align-items-center justify-content-center text-white text-center">
+
         <div className="px-3">
-          <h1
-            className="fw-bold display-2"
-            style={{ letterSpacing: "1px" }}
-          >
+
+          <p className="htr-subheading-pp mb-3">
+            TRAVEL GUIDE
+          </p>
+
+          <h1 className="fw-bold display-3 htr-hero-title-pp">
             How To Reach
           </h1>
 
-          <p className="fs-3 mt-3 text-light">
+          <p className="fs-5 mt-3 htr-hero-text-pp">
             Discover the easiest ways to travel across Madhya Pradesh
           </p>
 
-          <button className="btn btn-warning btn-lg rounded-pill px-5 mt-4 fw-semibold shadow">
+          <button className="btn htr-btn-pp px-5 py-3 mt-4">
             Start Journey
           </button>
+
         </div>
+
       </div>
 
       {/* TRAVEL OPTIONS */}
+
       <div className="container py-5">
-        
+
         <div className="text-center mb-5">
-          <h2 className="fw-bold display-6">
-            Travel Options
+
+          <p className="htr-subheading-pp mb-2">
+            TRAVEL OPTIONS
+          </p>
+
+          <h2 className="fw-bold display-6 htr-section-title-pp">
+            Comfortable Ways To Travel
           </h2>
 
-          <p className="text-muted">
-            Comfortable ways to explore the heart of India
+          <p className="htr-section-text-pp">
+            Explore the heart of India through air, rail and road
           </p>
+
         </div>
 
         <div className="row g-4">
-          
+
           {travelOptions.map((item, index) => (
 
             <div className="col-lg-4" key={index}>
-              
-              <div
-                className="card border-0 shadow-lg rounded-4 h-100 p-5 reach-card"
-                style={{
-                  transition: "0.4s",
-                  cursor: "pointer",
-                }}
-              >
-                <div
-                  className="mx-auto d-flex align-items-center justify-content-center rounded-circle mb-4"
-                  style={{
-                    width: "90px",
-                    height: "90px",
-                    background: item.color,
-                  }}
-                >
-                  <i className={`${item.icon} fs-1 text-white`}></i>
+
+              <div className="htr-card-pp h-100 p-4">
+
+                <div className="htr-icon-pp mb-4">
+                  {item.icon}
                 </div>
 
-                <h3 className="fw-bold text-center mb-4">
+                <h3 className="fw-bold mb-4 text-center">
                   {item.title}
                 </h3>
 
                 <ul className="list-unstyled">
-                  
+
                   {item.details.map((detail, i) => (
 
-                    <li key={i} className="mb-3 text-muted">
-                      <i className="fa-solid fa-circle-check text-success me-2"></i>
+                    <li
+                      key={i}
+                      className="mb-3 htr-list-item-pp"
+                    >
+                      <FaCircleCheck className="me-2" />
                       {detail}
                     </li>
 
                   ))}
 
                 </ul>
+
               </div>
 
             </div>
@@ -149,59 +150,59 @@ function HowToReach() {
           ))}
 
         </div>
+
       </div>
 
-      {/* POPULAR CITIES */}
+      {/* CITIES */}
+
       <div className="container pb-5">
-        
+
         <div className="text-center mb-5">
-          <h2 className="fw-bold display-6">
+
+          <p className="htr-subheading-pp mb-2">
+            CONNECTED CITIES
+          </p>
+
+          <h2 className="fw-bold display-6 htr-section-title-pp">
             Popular Entry Cities
           </h2>
 
-          <p className="text-muted">
+          <p className="htr-section-text-pp">
             Major connected destinations in Madhya Pradesh
           </p>
+
         </div>
 
         <div className="row g-4">
-          
+
           {cities.map((city, index) => (
 
             <div className="col-lg-3 col-md-6" key={index}>
-              
-              <div
-                className="card border-0 shadow-lg rounded-4 overflow-hidden h-100"
-                style={{
-                  transition: "0.4s",
-                  cursor: "pointer",
-                }}
-              >
+
+              <div className="htr-city-card-pp h-100">
+
                 <div className="overflow-hidden">
-                  
+
                   <img
                     src={city.image}
                     alt={city.name}
-                    className="w-100"
-                    style={{
-                      height: "260px",
-                      objectFit: "cover",
-                    }}
+                    className="w-100 htr-city-image-pp"
                   />
 
                 </div>
 
-                <div className="card-body text-center p-4">
-                  
+                <div className="text-center p-4">
+
                   <h4 className="fw-bold">
                     {city.name}
                   </h4>
 
-                  <button className="btn btn-outline-warning rounded-pill px-4 mt-3 fw-semibold">
+                  <button className="btn htr-outline-btn-pp px-4 mt-3">
                     Explore More
                   </button>
 
                 </div>
+
               </div>
 
             </div>
@@ -209,28 +210,45 @@ function HowToReach() {
           ))}
 
         </div>
+
       </div>
 
-      {/* EXTRA INFO */}
-      <div className="container-fluid bg-dark text-white py-5 mt-5">
-        
+      {/* STATS */}
+
+      <div className="htr-stats-section-pp py-5 mt-5">
+
         <div className="container">
-          
+
           <div className="row text-center g-4">
-            
+
             <div className="col-md-4">
-              <h1 className="fw-bold text-warning">12+</h1>
-              <p>Major Railway Junctions</p>
+              <h1 className="fw-bold htr-stats-number-pp">
+                12+
+              </h1>
+
+              <p className="mb-0">
+                Major Railway Junctions
+              </p>
             </div>
 
             <div className="col-md-4">
-              <h1 className="fw-bold text-warning">4</h1>
-              <p>International Airports</p>
+              <h1 className="fw-bold htr-stats-number-pp">
+                4
+              </h1>
+
+              <p className="mb-0">
+                International Airports
+              </p>
             </div>
 
             <div className="col-md-4">
-              <h1 className="fw-bold text-warning">50+</h1>
-              <p>Tourist Destinations Connected</p>
+              <h1 className="fw-bold htr-stats-number-pp">
+                50+
+              </h1>
+
+              <p className="mb-0">
+                Tourist Destinations Connected
+              </p>
             </div>
 
           </div>
@@ -238,6 +256,7 @@ function HowToReach() {
         </div>
 
       </div>
+
     </div>
   );
 }

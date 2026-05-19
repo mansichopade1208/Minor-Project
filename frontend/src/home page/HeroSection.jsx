@@ -3,30 +3,31 @@ import "./HeroSection.css";
 export default function HeroSection() {
   const slides = [
     {
-      image:
-        "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
-      title: "Explore Madhya Pradesh",
-      text: "Discover nature, culture and heritage",
+      type: "video",
+      src: "/videos/khajuraho.mp4",
+      title: "Roots of Incredible India",
+      text: "Temples, traditions and timeless stories of Madhya Pradesh",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-      title: "Experience Cultural Tourism",
-      text: "Festivals, traditions and unforgettable journeys",
+      type: "video",
+      src: "/videos/kanha.mp4",
+      title: "Into the Wild Heart",
+      text: "Explore forests, wildlife and untouched natural beauty",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
-      title: "Adventure Awaits",
-      text: "Wildlife, forests and hidden destinations",
+      type: "image",
+      src: "/images/culture.jpg",
+      title: "Culture You Can Feel",
+      text: "Festivals, folk art and vibrant traditions across the state",
     },
   ];
 
   return (
     <div
       id="heroCarousel"
-      className="carousel slide"
+      className="carousel slide carousel-fade"
       data-bs-ride="carousel"
+      data-bs-interval="5000"
     >
       {/* Indicators */}
       <div className="carousel-indicators">
@@ -48,24 +49,45 @@ export default function HeroSection() {
             key={index}
             className={`carousel-item ${index === 0 ? "active" : ""}`}
           >
-            <div
-              className="hero-slide"
-              style={{
-                backgroundImage: `url(${slide.image})`,
-              }}
-            >
-              <div className="overlay">
-                <div className="hero-content container">
+            <div className="hero-slide-hhero">
+              {/* VIDEO */}
+              {slide.type === "video" ? (
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="hero-media-hhero"
+                >
+                  <source src={slide.src} type="video/mp4" />
+                </video>
+              ) : (
+                <div
+                  className="hero-media-hhero"
+                  style={{
+                    backgroundImage: `url(${slide.src})`,
+                  }}
+                ></div>
+              )}
+
+              {/* Overlay */}
+              <div className="overlay-hhero">
+                <div className="hero-content-hhero container">
+                  <span className="hero-tag-hhero">
+                    Explore Madhya Pradesh
+                  </span>
+
                   <h1>{slide.title}</h1>
+
                   <p>{slide.text}</p>
 
-                  <div className="hero-buttons">
+                  <div className="hero-buttons-hhero">
                     <button className="btn btn-success me-3">
-                      Explore
+                      Explore Now
                     </button>
 
                     <button className="btn btn-outline-light">
-                      View Events
+                      Discover Events
                     </button>
                   </div>
                 </div>
@@ -77,7 +99,7 @@ export default function HeroSection() {
 
       {/* Controls */}
       <button
-        className="carousel-control-prev"
+        className="carousel-control-prev hero-control-hhero"
         type="button"
         data-bs-target="#heroCarousel"
         data-bs-slide="prev"
@@ -86,7 +108,7 @@ export default function HeroSection() {
       </button>
 
       <button
-        className="carousel-control-next"
+        className="carousel-control-next hero-control-hhero"
         type="button"
         data-bs-target="#heroCarousel"
         data-bs-slide="next"

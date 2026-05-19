@@ -160,6 +160,7 @@ export default function ExperiencesPage() {
           </div>
         ))}
       </div>
+      <br/>
 
       {/* SEARCH
 

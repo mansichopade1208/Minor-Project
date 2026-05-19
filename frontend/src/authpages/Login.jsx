@@ -59,7 +59,7 @@ function Login() {
 if (redirectPath) {
   
   sessionStorage.removeItem(
-    "redirectAfterLogin"
+    "redirectAfterLogin");
 
   navigate(redirectPath);
 
@@ -67,7 +67,7 @@ if (redirectPath) {
 
   navigate("/");
 }
-    } } catch (error) {
+    }  catch (error) {
   const newAttempts = attempts + 1;
   setAttempts(newAttempts);
   if (newAttempts >= 5) {
@@ -120,6 +120,6 @@ if (redirectPath) {
       </div>
     </div>
   );
-}
+}}
 
 export default Login;

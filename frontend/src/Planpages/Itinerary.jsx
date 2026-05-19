@@ -2,6 +2,16 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import {
+  FaLocationDot,
+  FaCalendarDays,
+  FaWallet,
+  FaUsers,
+  FaHeart,
+} from "react-icons/fa6";
+
+import "./Itinerary.css";
+
 function Itinerary() {
   const navigate = useNavigate();
 
@@ -39,57 +49,167 @@ function Itinerary() {
   };
 
   return (
-    <div style={{ padding: "40px" }}>
-      <h1>Plan Your Trip</h1>
+    <div className="itegen-page-pp d-flex align-items-center justify-content-center py-5">
+      <div className="container">
 
-      <input
-        type="text"
-        name="destination"
-        placeholder="Destination"
-        onChange={handleChange}
-      />
+        <div className="row justify-content-center">
+          <div className="col-lg-7 col-md-10">
 
-      <br /><br />
+            <div className="itegen-card-pp p-4 p-md-5">
 
-      <input
-        type="number"
-        name="days"
-        placeholder="Number of Days"
-        onChange={handleChange}
-      />
+              <div className="text-center mb-5">
+                <p className="itegen-subheading-pp mb-2">
+                  AI TRAVEL PLANNER
+                </p>
 
-      <br /><br />
+                <h1 className="itegen-heading-pp fw-bold">
+                  Plan Your Perfect Trip
+                </h1>
 
-      <select name="budget" onChange={handleChange}>
-        <option value="">Select Budget</option>
-        <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
-        <option value="Luxury">Luxury</option>
-      </select>
+                <p className="itegen-text-pp">
+                  Generate a personalized itinerary based on your preferences
+                </p>
+              </div>
 
-      <br /><br />
+              {/* Destination */}
 
-      <input
-        type="text"
-        name="travelers"
-        placeholder="Travelers"
-        onChange={handleChange}
-      />
+              <div className="mb-4">
+                <label className="form-label itegen-label-pp">
+                  Destination
+                </label>
 
-      <br /><br />
+                <div className="input-group">
+                  <span className="input-group-text itegen-iconbox-pp">
+                    <FaLocationDot />
+                  </span>
 
-      <input
-        type="text"
-        name="interests"
-        placeholder="Interests"
-        onChange={handleChange}
-      />
+                  <input
+                    type="text"
+                    name="destination"
+                    className="form-control itegen-input-pp"
+                    placeholder="Enter destination"
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
 
-      <br /><br />
+              {/* Days */}
 
-      <button onClick={generateTrip}>
-        Generate Itinerary
-      </button>
+              <div className="mb-4">
+                <label className="form-label itegen-label-pp">
+                  Number of Days
+                </label>
+
+                <div className="input-group">
+                  <span className="input-group-text itegen-iconbox-pp">
+                    <FaCalendarDays />
+                  </span>
+
+                  <input
+                    type="number"
+                    name="days"
+                    className="form-control itegen-input-pp"
+                    placeholder="Enter number of days"
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              {/* Budget */}
+
+              <div className="mb-4">
+                <label className="form-label itegen-label-pp">
+                  Budget
+                </label>
+
+                <div className="input-group">
+                  <span className="input-group-text itegen-iconbox-pp">
+                    <FaWallet />
+                  </span>
+
+                  <select
+                    name="budget"
+                    className="form-select itegen-input-pp"
+                    onChange={handleChange}
+                  >
+                    <option value="">
+                      Select Budget
+                    </option>
+
+                    <option value="Low">
+                      Low
+                    </option>
+
+                    <option value="Medium">
+                      Medium
+                    </option>
+
+                    <option value="Luxury">
+                      Luxury
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Travelers */}
+
+              <div className="mb-4">
+                <label className="form-label itegen-label-pp">
+                  Travelers
+                </label>
+
+                <div className="input-group">
+                  <span className="input-group-text itegen-iconbox-pp">
+                    <FaUsers />
+                  </span>
+
+                  <input
+                    type="text"
+                    name="travelers"
+                    className="form-control itegen-input-pp"
+                    placeholder="Solo, Family, Friends..."
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              {/* Interests */}
+
+              <div className="mb-4">
+                <label className="form-label itegen-label-pp">
+                  Interests
+                </label>
+
+                <div className="input-group">
+                  <span className="input-group-text itegen-iconbox-pp">
+                    <FaHeart />
+                  </span>
+
+                  <input
+                    type="text"
+                    name="interests"
+                    className="form-control itegen-input-pp"
+                    placeholder="Nature, Food, Adventure..."
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              {/* Button */}
+
+              <button
+                onClick={generateTrip}
+                className="btn w-100 itegen-btn-pp"
+              >
+                Generate Itinerary
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
     </div>
   );
 }

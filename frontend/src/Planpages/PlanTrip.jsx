@@ -1,85 +1,99 @@
 import { useNavigate } from "react-router-dom";
-import '../index.css';
+
+import {
+  FaEarthAsia,
+  FaCalendarDays,
+  FaTrain,
+  FaHotel,
+  FaCloudSun,
+  FaHeart,
+  FaLocationDot,
+  FaMapLocationDot,
+} from "react-icons/fa6";
+
+import "./PlanTrip.css";
+
 function PlanTrip() {
   const navigate = useNavigate();
 
   const features = [
     {
       title: "Explore Destinations",
-      icon: "fa-solid fa-earth-asia",
+      icon: <FaEarthAsia />,
       path: "/destination",
     },
     {
       title: "Build Itinerary",
-      icon: "fa-solid fa-calendar-days",
+      icon: <FaCalendarDays />,
       path: "/itinerary",
     },
     {
       title: "How to Reach",
-      icon: "fa-solid fa-train",
+      icon: <FaTrain />,
       path: "/how-to-reach",
     },
     {
       title: "Where to Stay",
-      icon: "fa-solid fa-hotel",
+      icon: <FaHotel />,
       path: "/hotels",
     },
     {
       title: "Weather Info",
-      icon: "fa-solid fa-cloud-sun",
+      icon: <FaCloudSun />,
       path: "/weather",
     },
     {
       title: "Saved Places",
-      icon: "fa-solid fa-heart",
+      icon: <FaHeart />,
       path: "/saved",
     },
     {
       title: "Nearby Attractions",
-      icon: "fa-solid fa-location-dot",
+      icon: <FaLocationDot />,
       path: "/nearby",
     },
     {
       title: "Tourist Map",
-      icon: "fa-solid fa-map-location-dot",
+      icon: <FaMapLocationDot />,
       path: "/map",
     },
   ];
 
   return (
-    <div
-      className="py-5"
-      style={{ background: "#f8f9fa", minHeight: "100vh" }}
-    >
+    <div className="plantrip-page-pp py-5">
       <div className="container">
-        
+
         <div className="text-center mb-5">
-          <h1 className="fw-bold display-5">Plan Your Trip</h1>
-          <p className="text-muted fs-5">
-            Everything you need for your journey
+          <p className="plantrip-subheading-pp mb-2">
+            PLAN YOUR JOURNEY
+          </p>
+
+          <h1 className="fw-bold display-5 plantrip-heading-pp">
+            Plan Your Trip
+          </h1>
+
+          <p className="plantrip-text-pp fs-5">
+            Everything you need for your Madhya Pradesh adventure
           </p>
         </div>
 
-   
         <div className="row g-4">
           {features.map((item, index) => (
             <div className="col-lg-3 col-md-6" key={index}>
-              
+
               <div
                 onClick={() => navigate(item.path)}
-                className="card border-0 shadow-sm h-100 rounded-4 p-4 text-center trip-card"
-                style={{
-                  cursor: "pointer",
-                  transition: "0.3s",
-                }}
+                className="plantrip-card-pp h-100 p-4 text-center"
               >
-                <div className="mb-3">
-                  <i className={`${item.icon} fs-1 text-warning`}></i>
+                <div className="plantrip-icon-pp mb-4">
+                  {item.icon}
                 </div>
 
-                <h5 className="fw-bold">{item.title}</h5>
+                <h5 className="fw-semibold mb-2">
+                  {item.title}
+                </h5>
 
-                <p className="text-muted small mt-2 mb-0">
+                <p className="plantrip-card-text-pp mb-0">
                   Explore this feature
                 </p>
               </div>
@@ -87,6 +101,7 @@ function PlanTrip() {
             </div>
           ))}
         </div>
+
       </div>
     </div>
   );

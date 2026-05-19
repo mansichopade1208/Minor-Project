@@ -20,12 +20,10 @@ import Login from "./authpages/login";
 import ExperiencesPage from "./experience/ExperiencesPage";
 import ExperienceDetails from "./experience/ExperienceDetails";
 
-
 function App() {
   return (
     <>
       <NavBar />
-
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/events" element={<EventPage />} />
