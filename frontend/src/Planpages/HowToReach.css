@@ -8,10 +8,8 @@
   height: 65vh;
 
   background-image:
-    linear-gradient(
-      rgba(0, 0, 0, 0.45),
-      rgba(0, 0, 0, 0.45)
-    ),
+    linear-gradient(rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.45)),
     url("https://images.unsplash.com/photo-1524492412937-b28074a5d7da");
 
   background-size: cover;
@@ -38,26 +36,21 @@
   color: rgba(255, 255, 255, 0.85);
 }
 
-/* BUTTON */
 
-.htr-btn-pp {
-  background: #1f4d3a;
+.htr-hero-tagline-pp {
+  display: inline-block;
 
-  color: white;
+  color: #d8f3dc;
 
-  border-radius: 50px;
+  font-size: 1rem;
 
-  font-weight: 600;
+  font-weight: 500;
 
-  transition: all 0.3s ease;
-}
+  letter-spacing: 1px;
 
-.htr-btn-pp:hover {
-  background: #2d6a4f;
+  padding-bottom: 6px;
 
-  color: white;
-
-  transform: translateY(-2px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
 }
 
 /* SECTION */

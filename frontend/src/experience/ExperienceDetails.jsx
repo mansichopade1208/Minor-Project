@@ -36,7 +36,7 @@ function ExperienceDetails() {
   const fetchExperienceDetail = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8080/experiences/${type}/${id}`,
+        `http://localhost:8080/experiences/detail/${type}/${id}`,
       );
 
       setExperience(res.data);
