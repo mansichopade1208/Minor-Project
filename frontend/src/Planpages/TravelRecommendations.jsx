@@ -1,44 +1,76 @@
-import React from "react";
+import React, { useMemo } from "react";
 import "./TravelRecommendations.css";
 
-function TravelRecommendations() {
-  const recommendations = [
-    {
-      icon: "☀️",
-      title: "Carry Sunscreen",
-      text: "UV levels are moderate to high during afternoon hours.",
-    },
+function TravelRecommendations({ weatherData }) {
+  const current = weatherData?.current;
 
-    {
-      icon: "🚶",
-      title: "Ideal For Evening Walks",
-      text: "Pleasant sunset temperatures make evenings perfect outdoors.",
-    },
+  const temp = current?.main?.temp;
+  const condition = current?.weather?.[0]?.main;
+  const wind = current?.wind?.speed;
+  const humidity = current?.main?.humidity;
 
-    {
-      icon: "💧",
-      title: "Stay Hydrated",
-      text: "Temperatures may rise during the day. Carry water while exploring.",
-    },
+  const recommendations = useMemo(() => {
+    const list = [];
 
-    {
-      icon: "📸",
-      title: "Great Visibility",
-      text: "Clear skies provide excellent conditions for sightseeing and photography.",
-    },
+    // TEMP BASED
+    if (temp >= 35) {
+      list.push({
+        icon: "☀️",
+        title: "Extreme Heat Alert",
+        text: "Avoid outdoor activities during afternoon. Prefer mornings or evenings.",
+      });
+    } else if (temp >= 28) {
+      list.push({
+        icon: "😎",
+        title: "Warm Weather",
+        text: "Good for sightseeing but carry sunscreen and stay hydrated.",
+      });
+    } else {
+      list.push({
+        icon: "🌤️",
+        title: "Pleasant Weather",
+        text: "Perfect climate for long outdoor exploration and walking tours.",
+      });
+    }
 
-    {
-      icon: "⛵",
-      title: "Perfect For Boating",
-      text: "Low wind speeds and calm conditions are favorable for water activities.",
-    },
+    // RAIN BASED
+    if (condition === "Rain" || condition === "Drizzle") {
+      list.push({
+        icon: "🌧️",
+        title: "Rain Expected",
+        text: "Carry umbrella and prefer indoor attractions like museums or cafes.",
+      });
+    }
 
-    {
-      icon: "🌦️",
-      title: "Light Rain Expected",
-      text: "Keep a light jacket or umbrella for late evening showers.",
-    },
-  ];
+    // WIND BASED
+    if (wind > 8) {
+      list.push({
+        icon: "💨",
+        title: "Windy Conditions",
+        text: "Be cautious near open areas and water activities.",
+      });
+    }
+
+    // HUMIDITY
+    if (humidity > 70) {
+      list.push({
+        icon: "💧",
+        title: "High Humidity",
+        text: "Weather may feel sticky. Wear light cotton clothes.",
+      });
+    }
+
+    // GOOD CONDITIONS (fallback)
+    if (list.length === 0) {
+      list.push({
+        icon: "📸",
+        title: "Great Travel Conditions",
+        text: "Perfect weather for outdoor activities, sightseeing, and photography.",
+      });
+    }
+
+    return list;
+  }, [temp, condition, wind, humidity]);
 
   return (
     <section className="travel-rec-section">
@@ -49,10 +81,7 @@ function TravelRecommendations() {
 
           <h2>Weather Based Travel Recommendations</h2>
 
-          <p>
-            Personalized suggestions to help you plan better experiences based
-            on current weather conditions.
-          </p>
+          <p>AI-style suggestions based on real-time weather conditions.</p>
         </div>
 
         {/* CARDS */}

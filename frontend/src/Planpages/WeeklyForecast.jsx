@@ -1,16 +1,71 @@
-import React from "react";
+import React, { useMemo } from "react";
 import "./WeeklyForecast.css";
 
-function WeeklyForecast() {
-  const weeklyData = [
-    { day: "Mon", icon: "☀️", high: "34°", low: "24°" },
-    { day: "Tue", icon: "🌤️", high: "33°", low: "23°" },
-    { day: "Wed", icon: "🌧️", high: "29°", low: "22°" },
-    { day: "Thu", icon: "⛅", high: "31°", low: "23°" },
-    { day: "Fri", icon: "☀️", high: "35°", low: "25°" },
-    { day: "Sat", icon: "🌦️", high: "30°", low: "22°" },
-    { day: "Sun", icon: "☀️", high: "34°", low: "24°" },
-  ];
+function WeeklyForecast({ weatherData }) {
+  const forecastList = weatherData?.forecast?.list || [];
+
+  // Group forecast by day
+  const weeklyData = useMemo(() => {
+    const daysMap = {};
+
+    forecastList.forEach((item) => {
+      const date = new Date(item.dt_txt);
+      const day = date.toLocaleDateString("en-US", { weekday: "short" });
+
+      if (!daysMap[day]) {
+        daysMap[day] = {
+          temps: [],
+          icons: [],
+        };
+      }
+
+      daysMap[day].temps.push(item.main.temp);
+      daysMap[day].icons.push(item.weather?.[0]?.main);
+    });
+
+    return Object.keys(daysMap)
+      .slice(0, 7)
+      .map((day) => {
+        const temps = daysMap[day].temps;
+
+        const high = Math.round(Math.max(...temps));
+        const low = Math.round(Math.min(...temps));
+
+        // simple icon logic (most frequent condition)
+        const iconSource = daysMap[day].icons;
+        const mainCondition = iconSource.sort(
+          (a, b) =>
+            iconSource.filter((v) => v === b).length -
+            iconSource.filter((v) => v === a).length,
+        )[0];
+
+        const getIcon = (cond) => {
+          switch (cond) {
+            case "Clear":
+              return "☀️";
+            case "Clouds":
+              return "🌤️";
+            case "Rain":
+              return "🌧️";
+            case "Drizzle":
+              return "🌦️";
+            case "Thunderstorm":
+              return "⛈️";
+            default:
+              return "🌡️";
+          }
+        };
+
+        return {
+          day,
+          high: `${high}°`,
+          low: `${low}°`,
+          icon: getIcon(mainCondition),
+        };
+      });
+  }, [forecastList]);
+
+  const current = weatherData?.current;
 
   return (
     <section className="weekly-section">
@@ -36,7 +91,7 @@ function WeeklyForecast() {
           ))}
         </div>
 
-        {/* BEST TIME SECTION */}
+        {/* BEST TIME SECTION (still static - OK for now) */}
         <div className="best-time-card">
           <div className="row align-items-center">
             {/* LEFT */}
@@ -57,29 +112,33 @@ function WeeklyForecast() {
                 <h2>Best Time To Visit</h2>
 
                 <p>
-                  November to February offers the most pleasant climate for
-                  sightseeing, outdoor experiences, and cultural exploration.
+                  Based on current weather trends, mornings and evenings are
+                  most suitable for outdoor exploration.
                 </p>
 
                 <div className="travel-info-grid">
                   <div>
-                    <h5>Peak Season</h5>
-                    <p>Nov - Feb</p>
+                    <h5>Humidity</h5>
+                    <p>{current?.main?.humidity ?? "--"}%</p>
                   </div>
 
                   <div>
-                    <h5>Monsoon</h5>
-                    <p>Jun - Sep</p>
+                    <h5>Wind</h5>
+                    <p>{current?.wind?.speed ?? "--"} m/s</p>
                   </div>
 
                   <div>
-                    <h5>Ideal For</h5>
-                    <p>Outdoor Travel</p>
+                    <h5>Condition</h5>
+                    <p>{current?.weather?.[0]?.main ?? "--"}</p>
                   </div>
 
                   <div>
-                    <h5>Temperature</h5>
-                    <p>18° - 28°</p>
+                    <h5>Feels Like</h5>
+                    <p>
+                      {current?.main?.feels_like
+                        ? `${Math.round(current.main.feels_like)}°`
+                        : "--"}
+                    </p>
                   </div>
                 </div>
               </div>

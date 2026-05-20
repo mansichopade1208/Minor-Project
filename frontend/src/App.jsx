@@ -24,6 +24,7 @@ import EmergencyContact from "./Planpages/EmergencyContact";
 import Cities from "./placespage/Cities";
 import District from "./placespage/District";
 import DistcityDetail from "./placespage/DistcityDetail";
+import WeatherPage from "./Planpages/WeatherPage";
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
         <Route path="/destination/district" element={<District/>}/>
         <Route path="/destination/city" element={<Cities/>}/>
         <Route path="/destination/:type/:name" element={<DistcityDetail/>}/>
+        <Route path="/weather" element={<WeatherPage/>} />
       </Routes>
       <ChatBot />
     </>
