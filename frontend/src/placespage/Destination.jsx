@@ -14,7 +14,7 @@ function Destination() {
     {
       key: "attractions",
       icon: "fa-solid fa-tree",
-      label: "Eco Tourism",
+      label: "Attractions",
     },
     {
       key: "artCulture",
@@ -24,12 +24,12 @@ function Destination() {
     {
       key: "picnicSpots",
       icon: "fa-solid fa-utensils",
-      label: "Cuisine",
+      label: "Picnic Spots",
     },
     {
       key: "regions",
       icon: "fa-solid fa-mountain-city",
-      label: "Destinations",
+      label: "Regions",
     },
     {
       key: "spirituality",
