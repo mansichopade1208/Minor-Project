@@ -2,15 +2,15 @@ import { useState } from "react";
 import axios from "axios";
 
 function Chatbot() {
-
   const [open, setOpen] = useState(false);
 
   const [message, setMessage] = useState("");
 
   const [chat, setChat] = useState([]);
 
-  const sendMessage = async () => {
+  const [loading, setLoading] = useState(false);
 
+  const sendMessage = async () => {
     if (!message.trim()) return;
 
     const userMessage = {
@@ -20,14 +20,16 @@ function Chatbot() {
 
     setChat((prev) => [...prev, userMessage]);
 
-    try {
+    const currentMessage = message;
 
-      const response = await axios.post(
-        "http://localhost:8080/ai/chat",
-        {
-          message,
-        }
-      );
+    setMessage("");
+
+    try {
+      setLoading(true);
+
+      const response = await axios.post("http://localhost:8080/ai/chat", {
+        message: currentMessage,
+      });
 
       const botMessage = {
         sender: "bot",
@@ -35,129 +37,338 @@ function Chatbot() {
       };
 
       setChat((prev) => [...prev, botMessage]);
-
-      setMessage("");
-
     } catch (error) {
-
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <>
-      {/* Floating Button */}
+      {/* FLOATING BUTTON */}
 
       <button
         onClick={() => setOpen(!open)}
+        className="
+          btn
+          shadow-lg
+          rounded-circle
+          position-fixed
+          d-flex
+          align-items-center
+          justify-content-center
+        "
         style={{
-          position: "fixed",
-          bottom: "20px",
-          right: "20px",
-          width: "60px",
-          height: "60px",
-          borderRadius: "50%",
-          background: "#0f766e",
+          bottom: "24px",
+          right: "24px",
+
+          width: "68px",
+          height: "68px",
+
+          background: "rgba(0, 57, 72, 0.92)",
+
+          border: "1px solid rgba(255,255,255,0.15)",
+
+          backdropFilter: "blur(14px)",
+
+          zIndex: 1050,
+
+          fontSize: "1.6rem",
+
           color: "white",
-          border: "none",
-          fontSize: "24px",
-          cursor: "pointer",
         }}
       >
         💬
       </button>
 
+      {/* CHAT WINDOW */}
+
       {open && (
         <div
+          className="
+            position-fixed
+            d-flex
+            flex-column
+            shadow-lg
+          "
           style={{
-            position: "fixed",
-            bottom: "90px",
-            right: "20px",
-            width: "320px",
-            height: "450px",
-            background: "white",
-            border: "1px solid #ccc",
-            borderRadius: "10px",
-            display: "flex",
-            flexDirection: "column",
+            bottom: "105px",
+
+            right: "24px",
+
+            width: "370px",
+
+            height: "580px",
+
+            borderRadius: "30px",
+
             overflow: "hidden",
+
+            background: "rgba(255,255,255,0.82)",
+
+            backdropFilter: "blur(22px)",
+
+            border: "1px solid rgba(255,255,255,0.6)",
+
+            zIndex: 1050,
           }}
         >
-         <div
-            style={{
-              background: "#0f766e",
-              color: "white",
-              padding: "12px",
-              fontWeight: "bold",
-            }}
-          >
-            MP Tourism Assistant
-          </div>
+          {/* HEADER */}
 
           <div
+            className="
+              d-flex
+              justify-content-between
+              align-items-center
+              px-4
+              py-3
+            "
             style={{
-              flex: 1,
-              padding: "10px",
-              overflowY: "auto",
+              background: "linear-gradient(135deg,#003948,#0b5d6b)",
+
+              color: "white",
             }}
           >
+            <div>
+              <h5 className="mb-0 fw-bold">MP Tourism AI</h5>
+
+              <small
+                style={{
+                  opacity: 0.8,
+                }}
+              >
+                Travel Assistant
+              </small>
+            </div>
+
+            <button
+              className="
+                btn
+                btn-sm
+                text-white
+                border-0
+              "
+              onClick={() => setOpen(false)}
+            >
+              ✕
+            </button>
+          </div>
+
+          {/* CHAT AREA */}
+
+          <div
+            className="
+              flex-grow-1
+              p-3
+              overflow-auto
+            "
+            style={{
+              background: "#f5f7f4",
+            }}
+          >
+            {chat.length === 0 && (
+              <div
+                className="
+                  h-100
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                  text-center
+                  px-4
+                "
+              >
+                <div
+                  className="
+                    rounded-circle
+                    d-flex
+                    align-items-center
+                    justify-content-center
+                    mb-4
+                  "
+                  style={{
+                    width: "90px",
+
+                    height: "90px",
+
+                    background: "rgba(0,57,72,0.08)",
+
+                    fontSize: "2rem",
+                  }}
+                >
+                  🌿
+                </div>
+
+                <h5
+                  className="
+                    fw-bold
+                    mb-3
+                  "
+                  style={{
+                    color: "#003948",
+                  }}
+                >
+                  Ask About MP Tourism
+                </h5>
+
+                <p
+                  className="text-muted"
+                  style={{
+                    fontSize: "0.95rem",
+                  }}
+                >
+                  Destinations, weather, culture, heritage, travel tips, food
+                  and more.
+                </p>
+              </div>
+            )}
+
+            {/* MESSAGES */}
+
             {chat.map((msg, index) => (
               <div
                 key={index}
-                style={{
-                  textAlign:
-                    msg.sender === "user"
-                      ? "right"
-                      : "left",
-
-                  marginBottom: "10px",
-                }}
+                className={`
+                    d-flex
+                    mb-3
+                    ${
+                      msg.sender === "user"
+                        ? "justify-content-end"
+                        : "justify-content-start"
+                    }
+                  `}
               >
-              <span
+                <div
+                  className="
+                      px-3
+                      py-2
+                      shadow-sm
+                    "
                   style={{
+                    maxWidth: "82%",
+
+                    borderRadius:
+                      msg.sender === "user"
+                        ? "18px 18px 4px 18px"
+                        : "18px 18px 18px 4px",
+
                     background:
                       msg.sender === "user"
-                        ? "#0f766e"
-                        : "#e5e7eb",
+                        ? "linear-gradient(135deg,#003948,#0b5d6b)"
+                        : "white",
 
-                    color:
-                      msg.sender === "user"
-                        ? "white"
-                        : "black",
+                    color: msg.sender === "user" ? "white" : "#222",
 
-                    padding: "8px 12px",
-                    borderRadius: "10px",
-                    display: "inline-block",
-                    maxWidth: "80%",
+                    fontSize: "0.95rem",
+
+                    lineHeight: "1.6",
+
+                    border:
+                      msg.sender === "bot"
+                        ? "1px solid rgba(0,0,0,0.05)"
+                        : "none",
                   }}
                 >
                   {msg.text}
-                </span>
+                </div>
               </div>
             ))}
+
+            {/* LOADING */}
+
+            {loading && (
+              <div className="d-flex justify-content-start">
+                <div
+                  className="
+                    px-3
+                    py-2
+                    shadow-sm
+                  "
+                  style={{
+                    borderRadius: "18px 18px 18px 4px",
+
+                    background: "white",
+
+                    border: "1px solid rgba(0,0,0,0.05)",
+                  }}
+                >
+                  <div
+                    className="
+                      spinner-border
+                      spinner-border-sm
+                      text-secondary
+                    "
+                  ></div>
+                </div>
+              </div>
+            )}
           </div>
+
+          {/* INPUT */}
+
           <div
+            className="
+              p-3
+              border-top
+            "
             style={{
-              display: "flex",
-              padding: "10px",
-              gap: "10px",
+              background: "rgba(255,255,255,0.9)",
             }}
           >
-            <input
-              type="text"
-              placeholder="Ask anything..."
-              value={message}
-              onChange={(e) =>
-                setMessage(e.target.value)
-              }
-              style={{
-                flex: 1,
-                padding: "10px",
-              }}
-            />
-            <button onClick={sendMessage}>
-              Send
-            </button>
+            <div
+              className="
+                d-flex
+                align-items-center
+                gap-2
+              "
+            >
+              <input
+                type="text"
+                className="
+                  form-control
+                  rounded-pill
+                  border-0
+                  shadow-sm
+                "
+                placeholder="Ask anything..."
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    sendMessage();
+                  }
+                }}
+                style={{
+                  padding: "14px 18px",
+
+                  background: "#f4f4f4",
+                }}
+              />
+
+              <button
+                onClick={sendMessage}
+                className="
+                  btn
+                  rounded-circle
+                  d-flex
+                  align-items-center
+                  justify-content-center
+                  shadow-sm
+                "
+                style={{
+                  width: "52px",
+
+                  height: "52px",
+
+                  background: "#003948",
+
+                  color: "white",
+                }}
+              >
+                ➤
+              </button>
+            </div>
           </div>
         </div>
       )}

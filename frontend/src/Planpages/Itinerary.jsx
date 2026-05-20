@@ -34,13 +34,10 @@ function Itinerary() {
     try {
       const response = await axios.post(
         "http://localhost:8080/ai/generate-itinerary",
-        formData
+        formData,
       );
 
-      localStorage.setItem(
-        "itinerary",
-        JSON.stringify(response.data)
-      );
+      localStorage.setItem("itinerary", JSON.stringify(response.data));
 
       navigate("/itineraryresult");
     } catch (error) {
@@ -51,16 +48,11 @@ function Itinerary() {
   return (
     <div className="itegen-page-pp d-flex align-items-center justify-content-center py-5">
       <div className="container">
-
         <div className="row justify-content-center">
           <div className="col-lg-7 col-md-10">
-
             <div className="itegen-card-pp p-4 p-md-5">
-
               <div className="text-center mb-5">
-                <p className="itegen-subheading-pp mb-2">
-                  AI TRAVEL PLANNER
-                </p>
+                <p className="itegen-subheading-pp mb-2">AI TRAVEL PLANNER</p>
 
                 <h1 className="itegen-heading-pp fw-bold">
                   Plan Your Perfect Trip
@@ -118,9 +110,7 @@ function Itinerary() {
               {/* Budget */}
 
               <div className="mb-4">
-                <label className="form-label itegen-label-pp">
-                  Budget
-                </label>
+                <label className="form-label itegen-label-pp">Budget</label>
 
                 <div className="input-group">
                   <span className="input-group-text itegen-iconbox-pp">
@@ -132,21 +122,13 @@ function Itinerary() {
                     className="form-select itegen-input-pp"
                     onChange={handleChange}
                   >
-                    <option value="">
-                      Select Budget
-                    </option>
+                    <option value="">Select Budget</option>
 
-                    <option value="Low">
-                      Low
-                    </option>
+                    <option value="Low">Low</option>
 
-                    <option value="Medium">
-                      Medium
-                    </option>
+                    <option value="Medium">Medium</option>
 
-                    <option value="Luxury">
-                      Luxury
-                    </option>
+                    <option value="Luxury">Luxury</option>
                   </select>
                 </div>
               </div>
@@ -154,9 +136,7 @@ function Itinerary() {
               {/* Travelers */}
 
               <div className="mb-4">
-                <label className="form-label itegen-label-pp">
-                  Travelers
-                </label>
+                <label className="form-label itegen-label-pp">Travelers</label>
 
                 <div className="input-group">
                   <span className="input-group-text itegen-iconbox-pp">
@@ -176,9 +156,7 @@ function Itinerary() {
               {/* Interests */}
 
               <div className="mb-4">
-                <label className="form-label itegen-label-pp">
-                  Interests
-                </label>
+                <label className="form-label itegen-label-pp">Interests</label>
 
                 <div className="input-group">
                   <span className="input-group-text itegen-iconbox-pp">
@@ -203,12 +181,9 @@ function Itinerary() {
               >
                 Generate Itinerary
               </button>
-
             </div>
-
           </div>
         </div>
-
       </div>
     </div>
   );
