@@ -1,80 +1,114 @@
 import { useState } from "react";
-import cities from "../data/cities";
-import districts from "../data/district";
-import { useNavigate } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
-import { categoriesData } from "../data/Categories";
 import CategoryCard from "../components/CategoryCard";
 
+import { categoriesData } from "../data/Categories";
+
+import "./Destination.css";
 
 function Destination() {
-  const [regionTab, setRegionTab] = useState("city"); 
-  const [activeCategory, setActiveCategory] = useState("attractions");
-  const navigate = useNavigate();
+  const [activeCategory, setActiveCategory] =
+    useState("attractions");
+
+  const categories = [
+    {
+      key: "attractions",
+      icon: "fa-solid fa-tree",
+      label: "Eco Tourism",
+    },
+    {
+      key: "artCulture",
+      icon: "fa-solid fa-palette",
+      label: "Artforms & Culture",
+    },
+    {
+      key: "picnicSpots",
+      icon: "fa-solid fa-utensils",
+      label: "Cuisine",
+    },
+    {
+      key: "regions",
+      icon: "fa-solid fa-mountain-city",
+      label: "Destinations",
+    },
+    {
+      key: "spirituality",
+      icon: "fa-solid fa-place-of-worship",
+      label: "Spirituality",
+    },
+  ];
+
   return (
-    <>
-      <div className="d-flex justify-content-center flex-wrap gap-5 mt-5">
-        <div
-          className={`text-center pb-2 ${activeCategory === "attractions" ? "border-bottom border-3 border-dark" : ""}`}
-          style={{ cursor: "pointer" }}
-          onClick={() => setActiveCategory("attractions")}
-        >
-          <i className="fa-solid fa-mountain-city fs-3 mb-3"></i>
-          <p className="fw-semibold mb-0">Attractions</p>
-        </div>
+    <div className="destination-page-desti">
 
-        <div
-          className={`text-center pb-2 ${activeCategory === "artCulture" ? "border-bottom border-3 border-dark" : ""}`}
-          style={{ cursor: "pointer" }}
-          onClick={() => setActiveCategory("artCulture")}
-        >
-          <i className="fa-solid fa-palette fs-3 mb-3"></i>
-          <p className="fw-semibold mb-0">Art & Culture</p>
-        </div>
+      {/* HEADER */}
 
-        <div
-          className={`text-center pb-2 ${activeCategory === "picnicSpots" ? "border-bottom border-3 border-dark" : ""}`}
-          style={{ cursor: "pointer" }}
-          onClick={() => setActiveCategory("picnicSpots")}
-        >
-          <i className="fa-solid fa-tree-city fs-3 mb-3"></i>
-          <p className="fw-semibold mb-0">Picnic Spots</p>
-        </div>
+      <section className="destination-top-desti">
+        <div className="container">
 
-        <div
-          className={`text-center pb-2 ${activeCategory === "regions" ? "border-bottom border-3 border-dark" : ""}`}
-          style={{ cursor: "pointer" }}
-          onClick={() => setActiveCategory("regions")}
-        >
-          <i className="fa-solid fa-location-dot fs-3 mb-3"></i>
-          <p className="fw-semibold mb-0">Regions</p>
-        </div>
+          {/* <p className="destination-subtitle-desti">
+            POPULAR DESTINATIONS
+          </p> */}
 
-        <div
-          className={`text-center pb-2 ${activeCategory === "spirituality" ? "border-bottom border-3 border-dark" : ""}`}
-          style={{ cursor: "pointer" }}
-          onClick={() => setActiveCategory("spirituality")}
-        >
-          <i className="fa-solid fa-place-of-worship fs-3 mb-3"></i>
-          <p className="fw-semibold mb-0">Spirituality</p>
-        </div>
-      </div>
+          <h1 className="destination-title-desti">
+            Discover The Beauty Of Madhya Pradesh
+          </h1>
 
-      <SearchBar />
+          {/* SEARCH BAR */}
 
-      <div className="container py-5">
-        <div className="row g-4">
-          {categoriesData[activeCategory].map((item, index) => (
-            <CategoryCard
-              key={index}
-              title={item.title}
-              image={item.image}
-              category={activeCategory}
-            />
-          ))}
+          <div className="destination-search-wrapper-desti">
+            <SearchBar />
+          </div>
+
+          {/* CATEGORY SECTION */}
+
+          <div className="destination-tabs-desti">
+            {categories.map((cat) => (
+              <div
+                key={cat.key}
+                className={`destination-tab-desti ${
+                  activeCategory === cat.key
+                    ? "active-desti"
+                    : ""
+                }`}
+                onClick={() =>
+                  setActiveCategory(cat.key)
+                }
+              >
+                <i className={cat.icon}></i>
+
+                <p>{cat.label}</p>
+
+                <div className="destination-line-desti"></div>
+              </div>
+            ))}
+          </div>
+
         </div>
-      </div>
-    </>
+      </section>
+
+      {/* CARDS */}
+
+      <section className="destination-cards-desti">
+        <div className="container">
+
+          <div className="row g-4">
+            {categoriesData[activeCategory].map(
+              (item, index) => (
+                <CategoryCard
+                  key={index}
+                  title={item.title}
+                  image={item.image}
+                  category={activeCategory}
+                />
+              )
+            )}
+          </div>
+
+        </div>
+      </section>
+
+    </div>
   );
 }
 

@@ -1,32 +1,72 @@
 function Footer() {
   return (
-    <footer className="bg-dark text-light pt-4 pb-2 mt-5">
-      <div className="container text-center text-md-start">
-        <div className="row">
-
-          <div className="col-md-4 mb-3">
-            <h5>MP Tourism</h5>
-            <p>Explore the heart of India with us.</p>
+    <footer className="bg-dark text-light pt-5 pb-3 mt-5 border-top border-secondary">
+      <div className="container">
+        <div className="row gy-4">
+          {/* Brand Section */}
+          <div className="col-md-4 text-center text-md-start">
+            <h4 className="fw-bold text-warning mb-2">MP Tourism</h4>
+            <p className="text-secondary mb-0">
+              Explore the heart of India with breathtaking landscapes, culture,
+              and heritage.
+            </p>
           </div>
 
-          <div className="col-md-4 mb-3">
-            <h6>Quick Links</h6>
+          {/* Quick Links */}
+          <div className="col-md-4 text-center">
+            <h6 className="text-uppercase fw-semibold mb-3">Quick Links</h6>
             <ul className="list-unstyled">
-              <li><a href="/" className="text-light">Home</a></li>
-              <li><a href="/" className="text-light">Explore</a></li>
-              <li><a href="/" className="text-light">Contact</a></li>
+              <li className="mb-2">
+                <a
+                  href="/"
+                  className="text-light text-decoration-none link-hover"
+                >
+                  Home
+                </a>
+              </li>
+              <li className="mb-2">
+                <a
+                  href="/explore"
+                  className="text-light text-decoration-none link-hover"
+                >
+                  Explore
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/contact"
+                  className="text-light text-decoration-none link-hover"
+                >
+                  Contact
+                </a>
+              </li>
             </ul>
           </div>
 
-          <div className="col-md-4 mb-3">
-            <h6>Contact</h6>
-            <p>Email: info@mptourism.com</p>
+          {/* Contact */}
+          <div className="col-md-4 text-center text-md-end">
+            <h6 className="text-uppercase fw-semibold mb-3">Contact</h6>
+            <p className="mb-1 text-secondary">📧 info@mptourism.com</p>
+            <p className="mb-0 text-secondary">📍 Madhya Pradesh, India</p>
           </div>
-
         </div>
 
-        <div className="text-center mt-3">
-          <p className="mb-0">© 2026 MP Tourism</p>
+        {/* Bottom Bar */}
+        <hr className="border-secondary my-4" />
+
+        <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
+          <p className="mb-2 mb-md-0 text-secondary">
+            © 2026 MP Tourism. All rights reserved.
+          </p>
+
+          <div className="d-flex gap-3">
+            <a href="#" className="text-secondary text-decoration-none">
+              Privacy Policy
+            </a>
+            <a href="#" className="text-secondary text-decoration-none">
+              Terms
+            </a>
+          </div>
         </div>
       </div>
     </footer>

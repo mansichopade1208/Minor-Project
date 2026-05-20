@@ -4,35 +4,41 @@ import "./WeeklyForecast.css";
 function WeeklyForecast({ weatherData }) {
   const forecastList = weatherData?.forecast?.list || [];
 
-  // Group forecast by day
   const weeklyData = useMemo(() => {
     const daysMap = {};
 
     forecastList.forEach((item) => {
       const date = new Date(item.dt_txt);
-      const day = date.toLocaleDateString("en-US", { weekday: "short" });
 
-      if (!daysMap[day]) {
-        daysMap[day] = {
+      // use full date as unique key
+      const dateKey = date.toLocaleDateString();
+
+      if (!daysMap[dateKey]) {
+        daysMap[dateKey] = {
+          day: date.toLocaleDateString("en-US", {
+            weekday: "short",
+          }),
+
           temps: [],
+
           icons: [],
         };
       }
 
-      daysMap[day].temps.push(item.main.temp);
-      daysMap[day].icons.push(item.weather?.[0]?.main);
+      daysMap[dateKey].temps.push(item.main.temp);
+
+      daysMap[dateKey].icons.push(item.weather?.[0]?.main);
     });
 
-    return Object.keys(daysMap)
-      .slice(0, 7)
-      .map((day) => {
-        const temps = daysMap[day].temps;
+    return Object.values(daysMap)
+      .slice(0, 5)
+      .map((item) => {
+        const high = Math.round(Math.max(...item.temps));
 
-        const high = Math.round(Math.max(...temps));
-        const low = Math.round(Math.min(...temps));
+        const low = Math.round(Math.min(...item.temps));
 
-        // simple icon logic (most frequent condition)
-        const iconSource = daysMap[day].icons;
+        const iconSource = item.icons;
+
         const mainCondition = iconSource.sort(
           (a, b) =>
             iconSource.filter((v) => v === b).length -
@@ -43,23 +49,31 @@ function WeeklyForecast({ weatherData }) {
           switch (cond) {
             case "Clear":
               return "☀️";
+
             case "Clouds":
               return "🌤️";
+
             case "Rain":
               return "🌧️";
+
             case "Drizzle":
               return "🌦️";
+
             case "Thunderstorm":
               return "⛈️";
+
             default:
               return "🌡️";
           }
         };
 
         return {
-          day,
+          day: item.day,
+
           high: `${high}°`,
+
           low: `${low}°`,
+
           icon: getIcon(mainCondition),
         };
       });
@@ -68,21 +82,24 @@ function WeeklyForecast({ weatherData }) {
   const current = weatherData?.current;
 
   return (
-    <section className="weekly-section">
+    <section className="weekly-section-wf">
       <div className="container">
-        {/* SECTION TITLE */}
-        <div className="weekly-heading text-center">
-          <span>Extended Forecast</span>
-          <h2>7 Day Weather Outlook</h2>
+        {/* HEADER */}
+
+        <div className="weekly-header-wf text-center">
+          <p className="weekly-subtitle-wf">EXTENDED FORECAST</p>
+
+          <h2 className="weekly-title-wf">5 Day Weather Outlook</h2>
         </div>
 
-        {/* WEEKLY CARDS */}
-        <div className="weekly-cards-wrapper">
+        {/* WEEKLY FORECAST */}
+
+        <div className="weekly-cards-wrapper-wf">
           {weeklyData.map((item, index) => (
-            <div className="weekly-card" key={index}>
+            <div className="weekly-card-wf" key={index}>
               <h5>{item.day}</h5>
 
-              <div className="weekly-icon">{item.icon}</div>
+              <div className="weekly-icon-wf">{item.icon}</div>
 
               <h3>{item.high}</h3>
 
@@ -91,12 +108,14 @@ function WeeklyForecast({ weatherData }) {
           ))}
         </div>
 
-        {/* BEST TIME SECTION (still static - OK for now) */}
-        <div className="best-time-card">
-          <div className="row align-items-center">
-            {/* LEFT */}
+        {/* RECOMMENDATION CARD */}
+
+        <div className="travel-card-wf">
+          <div className="row g-0 align-items-center">
+            {/* IMAGE */}
+
             <div className="col-lg-6">
-              <div className="best-time-image">
+              <div className="travel-image-wf">
                 <img
                   src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1974&auto=format&fit=crop"
                   alt="Travel"
@@ -104,41 +123,46 @@ function WeeklyForecast({ weatherData }) {
               </div>
             </div>
 
-            {/* RIGHT */}
+            {/* CONTENT */}
+
             <div className="col-lg-6">
-              <div className="best-time-content">
-                <span>Travel Recommendation</span>
+              <div className="travel-content-wf">
+                <p className="travel-subtitle-wf">TRAVEL RECOMMENDATION</p>
 
                 <h2>Best Time To Visit</h2>
 
-                <p>
-                  Based on current weather trends, mornings and evenings are
-                  most suitable for outdoor exploration.
+                <p className="travel-description-wf">
+                  Based on the current weather trends, mornings and evenings are
+                  most suitable for outdoor exploration and sightseeing.
                 </p>
 
-                <div className="travel-info-grid">
-                  <div>
-                    <h5>Humidity</h5>
-                    <p>{current?.main?.humidity ?? "--"}%</p>
+                <div className="travel-grid-wf">
+                  <div className="travel-box-wf">
+                    <span>Humidity</span>
+
+                    <h5>{current?.main?.humidity ?? "--"}%</h5>
                   </div>
 
-                  <div>
-                    <h5>Wind</h5>
-                    <p>{current?.wind?.speed ?? "--"} m/s</p>
+                  <div className="travel-box-wf">
+                    <span>Wind</span>
+
+                    <h5>{current?.wind?.speed ?? "--"} m/s</h5>
                   </div>
 
-                  <div>
-                    <h5>Condition</h5>
-                    <p>{current?.weather?.[0]?.main ?? "--"}</p>
+                  <div className="travel-box-wf">
+                    <span>Condition</span>
+
+                    <h5>{current?.weather?.[0]?.main ?? "--"}</h5>
                   </div>
 
-                  <div>
-                    <h5>Feels Like</h5>
-                    <p>
+                  <div className="travel-box-wf">
+                    <span>Feels Like</span>
+
+                    <h5>
                       {current?.main?.feels_like
                         ? `${Math.round(current.main.feels_like)}°`
                         : "--"}
-                    </p>
+                    </h5>
                   </div>
                 </div>
               </div>

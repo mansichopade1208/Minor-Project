@@ -5,91 +5,170 @@ function TravelRecommendations({ weatherData }) {
   const current = weatherData?.current;
 
   const temp = current?.main?.temp;
+
   const condition = current?.weather?.[0]?.main;
+
   const wind = current?.wind?.speed;
+
   const humidity = current?.main?.humidity;
 
   const recommendations = useMemo(() => {
     const list = [];
 
-    // TEMP BASED
-    if (temp >= 35) {
+    // HOT WEATHER
+
+    if (temp >= 38) {
       list.push({
-        icon: "☀️",
-        title: "Extreme Heat Alert",
-        text: "Avoid outdoor activities during afternoon. Prefer mornings or evenings.",
+        icon: "🥵",
+
+        title: "Extreme Heat",
+
+        text: "Avoid outdoor sightseeing during afternoon hours and stay hydrated.",
+
+        theme: "hot",
       });
-    } else if (temp >= 28) {
+
       list.push({
-        icon: "😎",
-        title: "Warm Weather",
-        text: "Good for sightseeing but carry sunscreen and stay hydrated.",
-      });
-    } else {
-      list.push({
-        icon: "🌤️",
-        title: "Pleasant Weather",
-        text: "Perfect climate for long outdoor exploration and walking tours.",
+        icon: "🌅",
+
+        title: "Best Time To Explore",
+
+        text: "Early mornings and evenings are the most comfortable for travel.",
+
+        theme: "sunset",
       });
     }
 
-    // RAIN BASED
+    // WARM WEATHER
+    else if (temp >= 28) {
+      list.push({
+        icon: "☀️",
+
+        title: "Warm & Sunny",
+
+        text: "Great conditions for sightseeing and local exploration.",
+
+        theme: "sunny",
+      });
+
+      list.push({
+        icon: "🧴",
+
+        title: "Carry Sunscreen",
+
+        text: "UV exposure may be high during midday hours.",
+
+        theme: "cream",
+      });
+    }
+
+    // COOL WEATHER
+    else {
+      list.push({
+        icon: "🌿",
+
+        title: "Pleasant Climate",
+
+        text: "Perfect weather for outdoor walks, photography, and nature trails.",
+
+        theme: "nature",
+      });
+
+      list.push({
+        icon: "🚶",
+
+        title: "Ideal For Walking Tours",
+
+        text: "Comfortable temperatures make long exploration enjoyable.",
+
+        theme: "walk",
+      });
+    }
+
+    // RAIN
+
     if (condition === "Rain" || condition === "Drizzle") {
       list.push({
         icon: "🌧️",
+
         title: "Rain Expected",
-        text: "Carry umbrella and prefer indoor attractions like museums or cafes.",
+
+        text: "Carry an umbrella and prefer indoor attractions or cafés.",
+
+        theme: "rain",
       });
     }
 
-    // WIND BASED
+    // THUNDERSTORM
+
+    if (condition === "Thunderstorm") {
+      list.push({
+        icon: "⛈️",
+
+        title: "Storm Conditions",
+
+        text: "Outdoor activities are not recommended during thunderstorms.",
+
+        theme: "storm",
+      });
+    }
+
+    // WINDY
+
     if (wind > 8) {
       list.push({
         icon: "💨",
-        title: "Windy Conditions",
-        text: "Be cautious near open areas and water activities.",
+
+        title: "Windy Weather",
+
+        text: "Be careful near open viewpoints and lakeside areas.",
+
+        theme: "wind",
       });
     }
 
     // HUMIDITY
-    if (humidity > 70) {
+
+    if (humidity > 75) {
       list.push({
         icon: "💧",
+
         title: "High Humidity",
-        text: "Weather may feel sticky. Wear light cotton clothes.",
+
+        text: "Wear breathable cotton clothing for better comfort.",
+
+        theme: "humidity",
       });
     }
 
-    // GOOD CONDITIONS (fallback)
-    if (list.length === 0) {
-      list.push({
-        icon: "📸",
-        title: "Great Travel Conditions",
-        text: "Perfect weather for outdoor activities, sightseeing, and photography.",
-      });
-    }
-
-    return list;
+    return list.slice(0, 4);
   }, [temp, condition, wind, humidity]);
 
   return (
-    <section className="travel-rec-section">
+    <section className="travel-rec-section-new">
       <div className="container">
-        {/* SECTION HEADER */}
-        <div className="travel-rec-heading text-center">
-          <span>Smart Insights</span>
+        {/* HEADER */}
 
-          <h2>Weather Based Travel Recommendations</h2>
+        <div className="travel-rec-header-new text-center">
+          <p className="travel-rec-subtitle-new">SMART INSIGHTS</p>
 
-          <p>AI-style suggestions based on real-time weather conditions.</p>
+          <h2 className="travel-rec-title-new">
+            Weather Based Travel Recommendations
+          </h2>
+
+          <p className="travel-rec-desc-new">
+            Smart suggestions based on real-time weather conditions to help you
+            plan a more comfortable and enjoyable trip.
+          </p>
         </div>
 
-        {/* CARDS */}
-        <div className="row g-4">
+        {/* GRID */}
+
+        <div className="row g-4 justify-content-center">
           {recommendations.map((item, index) => (
             <div className="col-lg-4 col-md-6" key={index}>
-              <div className="travel-rec-card">
-                <div className="travel-rec-icon">{item.icon}</div>
+              <div   className={`travel-rec-card-new ${item.theme}`}>
+                <div className="travel-rec-icon-new">{item.icon}</div>
 
                 <h3>{item.title}</h3>
 
