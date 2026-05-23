@@ -16,7 +16,7 @@ function Placesbytype() {
     const fetchPlaces = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/destination/type/${type}`
+          `http://localhost:8080/destination/type/${type}`,
         );
 
         setPlaces(res.data);
@@ -40,77 +40,68 @@ function Placesbytype() {
 
   return (
     <div className="placebytype-page">
-
       {/* HEADER */}
 
-      <div className="placebytype-header text-center">
-
-        <p>EXPLORE MADHYA PRADESH</p>
-
-        <h1>{type}</h1>
-
-        <span>
-          Discover heritage cities, cultural hubs, spiritual destinations,
-          and scenic escapes across the heart of India.
-        </span>
-
-      </div>
-
-      {/* GRID */}
-
       <div className="container">
+        <div className="placebytype-header text-center">
+          <p className="placebytype-subtitle">EXPLORE MADHYA PRADESH</p>
 
-        <div className="row g-4 justify-content-center">
+          <h1 className="placebytype-title">
+            {type.replace(/([A-Z])/g, " $1")}
+          </h1>
 
+          <span className="placebytype-desc">
+            Discover heritage destinations, hidden gems, natural escapes, and
+            cultural experiences across Madhya Pradesh.
+          </span>
+        </div>
+
+        {/* GRID */}
+
+        <div className="row g-4">
           {places.length === 0 ? (
             <div className="text-center">
               <h5>No places found</h5>
             </div>
           ) : (
             places.map((place) => (
-              <div
-                className="col-lg-4 col-md-6"
-                key={place._id}
-              >
-
+              <div className="col-lg-4 col-md-6" key={place._id}>
                 <div
                   className="placebytype-card"
                   onClick={() => navigate(`/place/${place._id}`)}
                 >
-
                   {/* IMAGE */}
 
-                  <div className="placebytype-image">
-
+                  <div className="placebytype-image-wrapper">
                     <img
                       src={place.image}
                       alt={place.name}
+                      className="placebytype-image"
                     />
 
+                    <div className="placebytype-overlay"></div>
                   </div>
 
                   {/* CONTENT */}
 
                   <div className="placebytype-content">
+                    <div>
+                      <h3>{place.name}</h3>
 
-                    <h3>{place.name}</h3>
+                      <p>
+                        Explore breathtaking landscapes, heritage architecture,
+                        and authentic cultural experiences.
+                      </p>
+                    </div>
 
-                    <button>
-                      Explore Place
-                    </button>
-
+                    <button className="placebytype-btn">Explore Place</button>
                   </div>
-
                 </div>
-
               </div>
             ))
           )}
-
         </div>
-
       </div>
-
     </div>
   );
 }
