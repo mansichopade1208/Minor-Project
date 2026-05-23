@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import "./placebytype.css"
+
+import "./Placesbytype.css";
 
 function Placesbytype() {
   const { type } = useParams();
+
   const [places, setPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/destination/type/${type}`,
+          `http://localhost:8080/destination/type/${type}`
         );
+
         setPlaces(res.data);
       } catch (err) {
         console.log(err);
@@ -27,48 +31,87 @@ function Placesbytype() {
   }, [type]);
 
   if (loading) {
-    return <h3 className="text-center mt-5">Loading...</h3>;
+    return (
+      <div className="placebytype-loading">
+        <h4>Loading...</h4>
+      </div>
+    );
   }
 
   return (
-    <div className="container py-5">
-  <h2 className="mb-5 text-center fw-bold text-capitalize">
-    {type} Places in MP
-  </h2>
+    <div className="placebytype-page">
 
-  <div className="row g-4">
-    {places.length === 0 ? (
-      <h5 className="text-center">No places found</h5>
-    ) : (
-      places.map((place) => (
-        <div className="col-md-4" key={place._id}>
-          <div
-            className="place-card position-relative overflow-hidden rounded-4 shadow"
-            onClick={() => navigate(`/place/${place._id}`)}
-            style={{
-              cursor: "pointer",
-              height: "320px",
-            }}
-          >
-            <img
-              src={place.image}
-              alt={place.name}
-              className="w-100 h-100 object-fit-cover"
-            />
+      {/* HEADER */}
 
-            {/* Dark Overlay */}
-            <div className="overlay"></div>
+      <div className="placebytype-header text-center">
 
-            {/* Place Name */}
-            <div className="place-name">
-              <h3>{place.name}</h3>
+        <p>EXPLORE MADHYA PRADESH</p>
+
+        <h1>{type}</h1>
+
+        <span>
+          Discover heritage cities, cultural hubs, spiritual destinations,
+          and scenic escapes across the heart of India.
+        </span>
+
+      </div>
+
+      {/* GRID */}
+
+      <div className="container">
+
+        <div className="row g-4 justify-content-center">
+
+          {places.length === 0 ? (
+            <div className="text-center">
+              <h5>No places found</h5>
             </div>
-          </div>
+          ) : (
+            places.map((place) => (
+              <div
+                className="col-lg-4 col-md-6"
+                key={place._id}
+              >
+
+                <div
+                  className="placebytype-card"
+                  onClick={() => navigate(`/place/${place._id}`)}
+                >
+
+                  {/* IMAGE */}
+
+                  <div className="placebytype-image">
+
+                    <img
+                      src={place.image}
+                      alt={place.name}
+                    />
+
+                  </div>
+
+                  {/* CONTENT */}
+
+                  <div className="placebytype-content">
+
+                    <h3>{place.name}</h3>
+
+                    <button>
+                      Explore Place
+                    </button>
+
+                  </div>
+
+                </div>
+
+              </div>
+            ))
+          )}
+
         </div>
-      ))
-    )}
-  </div>
-</div>
+
+      </div>
+
+    </div>
   );
 }
 

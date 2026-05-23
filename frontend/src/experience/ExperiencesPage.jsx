@@ -145,6 +145,14 @@ export default function ExperiencesPage() {
 
   return (
     <div className="experiences-page">
+      {/* HEADER */}
+
+      <div className="experience-header">
+        <p className="experience-subtitle">CURATED EXPERIENCES</p>
+
+        <h1 className="experience-title">Explore Authentic Experiences</h1>
+      </div>
+
       {/* TABS */}
 
       <div className="experience-tabs">
@@ -161,17 +169,11 @@ export default function ExperiencesPage() {
         ))}
       </div>
 
-      {/* SEARCH
-
-      <div className="experience-search">
-        <input type="text" placeholder="Search experiences..." />
-      </div> */}
-
       {/* LOADER */}
 
       {loading && <div className="exp-loader">Loading experiences...</div>}
 
-      {/* EMPTY STATE */}
+      {/* EMPTY */}
 
       {!loading && experienceData[activeTab].length === 0 && (
         <div className="empty-exp-message">

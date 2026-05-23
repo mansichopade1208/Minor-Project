@@ -1,8 +1,8 @@
-// const express = require('express');
-// const { getWeather } = {"../controllers/weather.js"};
+const express = require('express');
+const getWeather = require("../controllers/weather.js");
 
-// const router = express.Router();
+const router = express.Router();
 
-// router.get("/:city", getWeather);
+router.get("/:city", getWeather);
 
-// export default router;
+module.exports = router;

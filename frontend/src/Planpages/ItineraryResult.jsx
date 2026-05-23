@@ -4,36 +4,41 @@ import { useNavigate } from "react-router-dom";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
-function ItineraryResult() {
+import "./ItineraryResult.css";
 
+function ItineraryResult() {
   const pdfRef = useRef();
 
   const navigate = useNavigate();
 
-  const itinerary = JSON.parse(
-    localStorage.getItem("itinerary")
-  );
+  const itinerary = JSON.parse(localStorage.getItem("itinerary"));
 
   if (!itinerary) {
-
     return (
-      <div className="text-center mt-5">
-        <h1>No itinerary found</h1>
+      <div
+        className="
+          d-flex
+          justify-content-center
+          align-items-center
+          min-vh-100
+          text-center
+          itinerary-empty-iteresult
+        "
+      >
+        <div>
+          <h1>No itinerary found</h1>
+
+          <p>Generate a trip plan to view your itinerary.</p>
+        </div>
       </div>
     );
   }
 
   const downloadPDF = async () => {
-
-    const token =
-      localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
     if (!token) {
-
-      localStorage.setItem(
-        "redirectAfterLogin",
-        "/itinerary-result"
-      );
+      localStorage.setItem("redirectAfterLogin", "/itinerary-result");
 
       alert("Please login first");
 
@@ -44,211 +49,142 @@ function ItineraryResult() {
 
     const element = pdfRef.current;
 
-    const canvas =
-      await html2canvas(element, {
-        scale: 2,
-      });
+    const canvas = await html2canvas(element, {
+      scale: 2,
+    });
 
-    const data =
-      canvas.toDataURL("image/png");
+    const data = canvas.toDataURL("image/png");
 
-    const pdf = new jsPDF(
-      "p",
-      "mm",
-      "a4"
-    );
+    const pdf = new jsPDF("p", "mm", "a4");
 
     const imgWidth = 210;
 
     const pageHeight = 295;
 
-    const imgHeight =
-      (canvas.height * imgWidth) /
-      canvas.width;
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-    let heightLeft =
-      imgHeight;
+    let heightLeft = imgHeight;
 
     let position = 0;
 
-    pdf.addImage(
-      data,
-      "PNG",
-      0,
-      position,
-      imgWidth,
-      imgHeight
-    );
+    pdf.addImage(data, "PNG", 0, position, imgWidth, imgHeight);
 
     heightLeft -= pageHeight;
 
     while (heightLeft > 0) {
-
-      position =
-        heightLeft - imgHeight;
+      position = heightLeft - imgHeight;
 
       pdf.addPage();
 
-      pdf.addImage(
-        data,
-        "PNG",
-        0,
-        position,
-        imgWidth,
-        imgHeight
-      );
+      pdf.addImage(data, "PNG", 0, position, imgWidth, imgHeight);
 
       heightLeft -= pageHeight;
     }
 
-    pdf.save(
-      "MP-Tourism-Itinerary.pdf"
-    );
+    pdf.save("MP-Tourism-Itinerary.pdf");
   };
 
   return (
-
-    <div
-      className="container py-5"
-    >
-
+    <div className="itinerary-page-iteresult">
       <div
-        ref={pdfRef}
-        className="bg-white p-4 rounded-4 shadow-lg"
+        className="
+          container
+          py-5
+        "
       >
+        {/* TOP HEADER */}
 
-        {/* HEADER */}
+        <div
+          className="
+            text-center
+            mb-5
+          "
+        >
+          <p className="itinerary-subtitle-iteresult">AI GENERATED JOURNEY</p>
 
-        <div className="text-center mb-5">
+          <h1 className="itinerary-title-iteresult">{itinerary.tripName}</h1>
 
-          <h1
-            className="fw-bold display-5"
-            style={{
-              color: "#ff7b00",
-            }}
-          >
-            {itinerary.tripName}
-          </h1>
-
-          <p className="text-muted fs-5">
-            MP Tourism AI Generated
-            Itinerary
+          <p className="itinerary-desc-iteresult">
+            Personalized travel experiences crafted for your Madhya Pradesh
+            adventure.
           </p>
-
         </div>
 
-        {/* DAYS */}
+        {/* MAIN CARD */}
 
-        {itinerary.days.map(
-          (day) => (
+        <div ref={pdfRef} className="itinerary-wrapper-iteresult">
+          {itinerary.days.map((day) => (
+            <div key={day.day} className="day-card-iteresult">
+              {/* HEADER */}
 
-            <div
-              key={day.day}
-              className="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden"
-            >
+              <div className="day-header-iteresult">
+                <div>
+                  <p className="day-label-iteresult">Day {day.day}</p>
 
-              {/* TOP */}
-
-              <div
-                className="p-4 text-white"
-                style={{
-                  background:
-                    "linear-gradient(135deg,#ff7b00,#ffb347)",
-                }}
-              >
-
-                <h2 className="fw-bold">
-                  Day {day.day}
-                </h2>
-
-                <h4>
-                  📍 {day.city}
-                </h4>
-
+                  <h2>📍 {day.city}</h2>
+                </div>
               </div>
 
               {/* BODY */}
 
-              <div className="card-body p-4">
-
+              <div className="day-body-iteresult">
                 {/* ACTIVITIES */}
 
-                <div className="mb-4">
+                <div className="section-iteresult">
+                  <h4>Activities</h4>
 
-                  <h5 className="fw-bold mb-3">
-                    Activities
-                  </h5>
-
-                  <ul className="list-group">
-
-                    {day.activities.map(
-                      (
-                        activity,
-                        index
-                      ) => (
-
-                        <li
-                          key={index}
-                          className="list-group-item border-0 mb-2 rounded-3 bg-light"
-                        >
-                          ✨ {activity}
-                        </li>
-                      )
-                    )}
-
-                  </ul>
-
+                  <div className="activity-list-iteresult">
+                    {day.activities.map((activity, index) => (
+                      <div key={index} className="activity-item-iteresult">
+                        ✨ {activity}
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
-                {/* FOOD */}
+                {/* FOOD + HOTEL */}
 
-                <div className="mb-3">
+                <div className="info-grid-iteresult">
+                  <div className="info-box-iteresult">
+                    <h5>🍴 Food</h5>
 
-                  <h5 className="fw-bold">
-                    🍴 Food
-                  </h5>
+                    <p>{day.food}</p>
+                  </div>
 
-                  <p className="text-secondary mb-0">
-                    {day.food}
-                  </p>
+                  <div className="info-box-iteresult">
+                    <h5>🏨 Hotel</h5>
 
+                    <p>{day.hotel}</p>
+                  </div>
                 </div>
-
-                {/* HOTEL */}
-
-                <div>
-
-                  <h5 className="fw-bold">
-                    🏨 Hotel
-                  </h5>
-
-                  <p className="text-secondary mb-0">
-                    {day.hotel}
-                  </p>
-
-                </div>
-
               </div>
-
             </div>
-          )
-        )}
+          ))}
+        </div>
 
-      </div>
+        {/* BUTTON */}
 
-      {/* DOWNLOAD BUTTON */}
-
-      <div className="text-center mt-5">
-
-        <button
-          className="btn btn-dark px-5 py-3 rounded-pill fw-semibold"
-          onClick={downloadPDF}
+        <div
+          className="
+            text-center
+            mt-5
+          "
         >
-          Download Itinerary PDF
-        </button>
-
+          <button
+            className="
+              btn
+              px-5
+              py-3
+              rounded-pill
+              fw-semibold
+              itinerary-btn-iteresult
+            "
+            onClick={downloadPDF}
+          >
+            Download Itinerary PDF
+          </button>
+        </div>
       </div>
-
     </div>
   );
 }

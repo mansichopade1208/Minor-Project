@@ -1,108 +1,142 @@
 import { useEffect, useState } from "react";
+
 import { useParams } from "react-router-dom";
+
 import axios from "axios";
-import "./HotelDetail.css";
+
+import {
+  FaLocationDot,
+  FaStar,
+  FaHotel,
+  FaCheck,
+  FaArrowRight,
+} from "react-icons/fa6";
+
+import "./HotelDetails.css";
 
 function HotelDetails() {
   const { id } = useParams();
+
   const [hotel, setHotel] = useState(null);
+
   useEffect(() => {
     const fetchHotel = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/hotels/booking/${id}`
+          `http://localhost:8080/hotels/booking/${id}`,
         );
+
         setHotel(res.data);
       } catch (err) {
         console.log(err);
       }
     };
+
     fetchHotel();
   }, [id]);
-  if (!hotel) {
-    return (
-      <h3 className="text-center mt-5">
-        Loading...
-      </h3>
-    );
-  }
-  return (
 
-    <div className="hotel-details-page py-5">
+  if (!hotel) {
+    return <h3 className="text-center mt-5">Loading...</h3>;
+  }
+
+  return (
+    <div className="hoteldtl-page py-5">
       <div className="container">
-        <div className="card border-0 shadow-lg hotel-details-card">
+        {/* HERO IMAGE */}
+
+        <div className="hoteldtl-hero-wrapper mb-5">
           <img
-            src={`http://localhost:8080${hotel.image}`}
+            // src={`http://localhost:8080${hotel.image}`}
+            src={`https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`}
             alt={hotel.name}
-            className="hotel-hero-image"
+            className="hoteldtl-image"
           />
 
-          <div className="card-body p-4 p-md-5">
-            <div className="d-flex justify-content-between align-items-center flex-wrap mb-4">
+          <div className="hoteldtl-overlay">
+            <div className="d-flex justify-content-between align-items-end flex-wrap gap-3">
               <div>
-                <h1 className="hotel-title">
-                  {hotel.name}
-                </h1>
-                <p className="hotel-location">
-                  📍 {hotel.city}
+                <p className="hoteldtl-subheading mb-2">PREMIUM STAY</p>
+
+                <h1 className="fw-bold hoteldtl-title">{hotel.name}</h1>
+
+                <p className="hoteldtl-location mb-0">
+                  <FaLocationDot className="me-2" />
+
+                  {hotel.city}
                 </p>
               </div>
-              <span className="badge bg-warning text-dark hotel-badge">
-                ⭐ {hotel.rating}
-              </span>
+
+              <div className="hoteldtl-rating">
+                <FaStar className="me-2" />
+
+                {hotel.rating}
+              </div>
             </div>
-            <div className="mb-4 d-flex gap-3 flex-wrap">
-             <span className="badge bg-dark hotel-badge">
-                {hotel.type}
-              </span>
-              <span className="badge bg-success hotel-badge">
-                {hotel.price}
-              </span>
+          </div>
+        </div>
+
+        {/* DETAILS */}
+
+        <div className="row g-4">
+          {/* LEFT */}
+
+          <div className="col-lg-8">
+            {/* ABOUT */}
+
+            <div className="hoteldtl-section mb-4">
+              <div className="d-flex gap-3 flex-wrap mb-4">
+                <span className="hoteldtl-badge">
+                  <FaHotel className="me-2" />
+
+                  {hotel.type}
+                </span>
+
+                <span className="hoteldtl-price">
+                  Starting from &#8377;{hotel.price}
+                </span>
+              </div>
+
+              <h3 className="hoteldtl-heading">About Hotel</h3>
+
+              <p className="hoteldtl-description">{hotel.description}</p>
             </div>
-            <hr />
-            <div className="mb-5">
-              <h3 className="hotel-section-title">
-                About Hotel
-              </h3>
-              <p className="hotel-description">
-                {hotel.description}
-              </p>
-            </div>
-            <div className="mb-5">
-              <h3 className="hotel-section-title">
-                Amenities
-              </h3>
+
+            {/* AMENITIES */}
+
+            <div className="hoteldtl-section">
+              <h3 className="hoteldtl-heading mb-4">Amenities</h3>
+
               <div className="d-flex flex-wrap gap-3">
                 {hotel.amenities?.map((item, index) => (
-                  <span
-                    className="amenity-badge"
-                    key={index}
-                  >
+                  <div className="hoteldtl-amenity" key={index}>
+                    <FaCheck className="me-2" />
+
                     {item}
-                  </span>
+                  </div>
                 ))}
               </div>
             </div>
+          </div>
 
-            <div className="mb-5">
-              <h3 className="hotel-section-title">
-                Location
-              </h3>
+          {/* RIGHT */}
+
+          <div className="col-lg-4">
+            <div className="hoteldtl-map-card">
+              <h4 className="fw-bold mb-4">Location</h4>
+
               <iframe
                 title="hotel-map"
                 width="100%"
-                height="350"
-                className="hotel-map"
+                height="260"
+                className="hoteldtl-map"
                 loading="lazy"
                 allowFullScreen
                 src={`https://www.google.com/maps?q=${hotel.location}&output=embed`}
               ></iframe>
-            </div>
 
-
-            <div className="text-center">
-              <button className="btn btn-warning book-btn">
+              <button className="btn hoteldtl-btn w-100 mt-4">
                 Book Now
+                <FaArrowRight className="ms-2" />
               </button>
             </div>
           </div>

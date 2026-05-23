@@ -1,0 +1,206 @@
+/* =========================
+   PAGE
+========================= */
+
+.placebytype-page {
+    min-height: 100vh;
+
+    padding: 70px 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #eef7f2 0%,
+            #f8f8f8 100%
+        );
+}
+
+/* =========================
+   HEADER
+========================= */
+h1{
+  font-size: 4rem !important; 
+}
+.placebytype-header {
+    margin-bottom: 70px;
+}
+
+.placebytype-header p {
+    font-size: 0.75rem;
+
+    letter-spacing: 2px;
+
+    font-weight: 600;
+
+    color: #777;
+
+    margin-bottom: 1rem;
+}
+
+.placebytype-header h1 {
+    font-size:
+        clamp(3rem, 5vw, 5rem);
+
+    font-weight: 700;
+
+    color: #1d4d3b;
+
+    margin-bottom: 1.5rem;
+
+    text-transform: capitalize;
+}
+
+.placebytype-header span {
+    display: block;
+
+    max-width: 760px;
+
+    margin: auto;
+
+    color: #666;
+
+    font-size: 1.2rem;
+
+    line-height: 2;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.placebytype-card {
+    overflow: hidden;
+
+    border-radius: 32px;
+
+    background: white;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.05);
+
+    transition: 0.35s ease;
+
+    cursor: pointer;
+}
+
+.placebytype-card:hover {
+    transform: translateY(-6px);
+}
+
+/* =========================
+   IMAGE
+========================= */
+
+.placebytype-image {
+    width: 100%;
+
+    height: 260px;
+
+    overflow: hidden;
+}
+
+.placebytype-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: 0.5s ease;
+}
+
+.placebytype-card:hover img {
+    transform: scale(1.03);
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.placebytype-content {
+    padding: 30px;
+}
+
+.placebytype-content h3 {
+    font-size: 2rem;
+
+    font-weight: 700;
+
+    color: #111;
+
+    margin-bottom: 2rem;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.placebytype-content button {
+    border: none;
+
+    background: #1d4d3b;
+
+    color: white;
+
+    padding:
+        0.9rem 1.8rem;
+
+    border-radius: 999px;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    transition: 0.3s ease;
+}
+
+.placebytype-content button:hover {
+    background: #2b6a53;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.placebytype-loading {
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #eef7f2 0%,
+            #f8f8f8 100%
+        );
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .placebytype-header {
+        margin-bottom: 50px;
+    }
+
+    .placebytype-header span {
+        font-size: 1rem;
+    }
+
+    .placebytype-content {
+        padding: 24px;
+    }
+
+    .placebytype-content h3 {
+        font-size: 1.6rem;
+    }
+
+    .placebytype-image {
+        height: 220px;
+    }
+
+}

@@ -2,7 +2,6 @@ const express = require("express");
 const prouter = express.Router();
 const Place = require("../models/place");
 
-
 prouter.get("/", async (req, res) => {
   try{
   const places = await Place.find();

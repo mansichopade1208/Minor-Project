@@ -16,7 +16,7 @@ const cuisineRouter=require("./routes/cuisineRoute");
 const hotelRouter=require("./routes/hotelRoute");
 const chatRouter=require("./routes/chatbot");
 const experienceRouter = require("./routes/experienceRoute");
-// const weatherRouter = require("./routes/weatherRoutes.js") ;
+const weatherRouter = require("./routes/weatherRoutes.js") ;
 const authRouter=require("./routes/auth")
 
 
@@ -33,7 +33,7 @@ app.use("/cuisines",cuisineRouter);
 app.use("/hotels" , hotelRouter );
 app.use("/ai",chatRouter);
 app.use("/experiences", experienceRouter);
-// app.use("/weather", weatherRouter);
+app.use("/weather", weatherRouter);
 app.use("/auth",authRouter);
 
 
