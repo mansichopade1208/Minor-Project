@@ -11,7 +11,6 @@ import danceImg from "../asserts/categoryimages/dance.jpg";
 import textileImg from "../asserts/categoryimages/textile.jpg";
 
 import NatureparkImg from "../asserts/categoryimages/park.jpg";
-import gardenImg from "../asserts/categoryimages/garden.jpg";
 import SunsetpointImg from "../asserts/categoryimages/sunset.jpg";
 import DamsImg from "../asserts/categoryimages/dam.jpg";
 
@@ -21,8 +20,8 @@ import cityImg from "../asserts/categoryimages/city.jpg";
 import templeImg from "../asserts/categoryimages/temple.jpg";
 import mosqueImg from "../asserts/categoryimages/mosque.jpg";
 import churchImg from "../asserts/categoryimages/church.jpg";
-import ghatImg from "../asserts/categoryimages/ghat.jpg";
-import SynagoguesImg from "../asserts/categoryimages/synagogues.jpg";
+import gurudwaraImg from "../asserts/categoryimages/gurudwra.jpeg";
+
 
 export const categoriesData = {
 
@@ -93,10 +92,7 @@ export const categoriesData = {
 ,
     },
 
-    {
-      title: "Gardens",
-      image: gardenImg,
-    },
+   
 
     {
       title: "Dams",
@@ -133,14 +129,11 @@ export const categoriesData = {
       image: churchImg,
     },
 
-    {
-      title: "Ghats",
-      image: ghatImg,
-    },
+  
 
     {
-      title: "Synagogues",
-      image: SynagoguesImg,
+      title: "Gurudwaras",
+      image: gurudwaraImg,
     },
 
   ],

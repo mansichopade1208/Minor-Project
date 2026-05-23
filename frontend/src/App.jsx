@@ -26,7 +26,6 @@ import District from "./placespage/District";
 import DistcityDetail from "./placespage/DistcityDetail";
 
 
-
 function App() {
   return (
     <>
