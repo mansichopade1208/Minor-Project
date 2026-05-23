@@ -5,41 +5,38 @@
 .placebytype-page {
     min-height: 100vh;
 
-    padding: 70px 0;
-
     background:
-        linear-gradient(
-            180deg,
+        linear-gradient(180deg,
             #eef7f2 0%,
-            #f8f8f8 100%
-        );
+            #f8f8f8 100%);
+
+    padding:
+        70px 0 90px;
 }
 
 /* =========================
    HEADER
 ========================= */
-h1{
-  font-size: 4rem !important; 
-}
+
 .placebytype-header {
-    margin-bottom: 70px;
+    margin-bottom: 5rem;
 }
 
-.placebytype-header p {
+.placebytype-subtitle {
     font-size: 0.75rem;
 
-    letter-spacing: 2px;
-
     font-weight: 600;
+
+    letter-spacing: 2px;
 
     color: #777;
 
     margin-bottom: 1rem;
 }
 
-.placebytype-header h1 {
+.placebytype-title {
     font-size:
-        clamp(3rem, 5vw, 5rem);
+        clamp(2.7rem, 5vw, 4.5rem);
 
     font-weight: 700;
 
@@ -50,7 +47,7 @@ h1{
     text-transform: capitalize;
 }
 
-.placebytype-header span {
+.placebytype-desc {
     display: block;
 
     max-width: 760px;
@@ -59,9 +56,9 @@ h1{
 
     color: #666;
 
-    font-size: 1.2rem;
+    line-height: 1.9;
 
-    line-height: 2;
+    font-size: 1.05rem;
 }
 
 /* =========================
@@ -69,14 +66,27 @@ h1{
 ========================= */
 
 .placebytype-card {
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    border-radius: 34px;
+
     overflow: hidden;
 
-    border-radius: 32px;
+    background:
+        rgba(255, 255, 255, 0.78);
 
-    background: white;
+    backdrop-filter: blur(18px);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.7);
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,0.05);
+        0 18px 40px rgba(0, 0, 0, 0.08),
+        0 6px 18px rgba(0, 0, 0, 0.04);
 
     transition: 0.35s ease;
 
@@ -84,23 +94,25 @@ h1{
 }
 
 .placebytype-card:hover {
-    transform: translateY(-6px);
+    transform:
+        translateY(-10px);
 }
 
 /* =========================
    IMAGE
 ========================= */
 
-.placebytype-image {
-    width: 100%;
+.placebytype-image-wrapper {
+    position: relative;
 
     height: 260px;
 
     overflow: hidden;
 }
 
-.placebytype-image img {
+.placebytype-image {
     width: 100%;
+
     height: 100%;
 
     object-fit: cover;
@@ -108,8 +120,19 @@ h1{
     transition: 0.5s ease;
 }
 
-.placebytype-card:hover img {
-    transform: scale(1.03);
+.placebytype-card:hover .placebytype-image {
+    transform: scale(1.08);
+}
+
+.placebytype-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(to top,
+            rgba(0, 0, 0, 0.35),
+            transparent);
 }
 
 /* =========================
@@ -117,44 +140,68 @@ h1{
 ========================= */
 
 .placebytype-content {
-    padding: 30px;
+    padding: 2rem;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    flex-grow: 1;
 }
 
 .placebytype-content h3 {
-    font-size: 2rem;
+    font-size: 1.8rem;
 
     font-weight: 700;
 
     color: #111;
 
+    margin-bottom: 1rem;
+}
+
+.placebytype-content p {
+    color: #666;
+
+    line-height: 1.8;
+
     margin-bottom: 2rem;
+
+    flex-grow: 1;
 }
 
 /* =========================
    BUTTON
 ========================= */
 
-.placebytype-content button {
+.placebytype-btn {
     border: none;
 
-    background: #1d4d3b;
-
-    color: white;
-
     padding:
-        0.9rem 1.8rem;
+        0.95rem 1.6rem;
 
     border-radius: 999px;
 
-    font-size: 1rem;
+    background: #1F4D3A;
+
+    color: white;
 
     font-weight: 600;
 
     transition: 0.3s ease;
+
+    margin-top: auto;
+
+    width: fit-content;
 }
 
-.placebytype-content button:hover {
-    background: #2b6a53;
+.placebytype-btn:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 24px rgba(31, 77, 58, 0.22);
 }
 
 /* =========================
@@ -167,40 +214,45 @@ h1{
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     background:
-        linear-gradient(
-            180deg,
+        linear-gradient(180deg,
             #eef7f2 0%,
-            #f8f8f8 100%
-        );
+            #f8f8f8 100%);
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
 
+@media (max-width: 992px) {
+
+    .placebytype-image-wrapper {
+        height: 240px;
+    }
+}
+
 @media (max-width: 768px) {
 
-    .placebytype-header {
-        margin-bottom: 50px;
-    }
-
-    .placebytype-header span {
-        font-size: 1rem;
+    .placebytype-title {
+        font-size: 2.5rem;
     }
 
     .placebytype-content {
-        padding: 24px;
+        padding: 1.5rem;
     }
 
     .placebytype-content h3 {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 
-    .placebytype-image {
+    .placebytype-image-wrapper {
         height: 220px;
     }
 
+    .placebytype-desc {
+        font-size: 1rem;
+    }
 }

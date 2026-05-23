@@ -131,6 +131,9 @@
 
 .district-content-district {
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 260px);
 }
 
 .district-content-district h3 {
@@ -145,10 +148,9 @@
 
 .district-content-district p {
     color: #666;
-
     line-height: 1.8;
-
     margin-bottom: 2rem;
+    flex-grow: 1;
 }
 
 /* =========================
@@ -157,23 +159,18 @@
 
 .district-btn-district {
     border: none;
-
     padding:
         0.9rem 1.5rem;
-
     border-radius: 999px;
-
     /* background:
         linear-gradient(135deg,
             #003948,
             #0b5d6b); */
     background: #1F4D3A;
-
     color: white;
-
     font-weight: 600;
-
     transition: 0.3s ease;
+    margin-top: auto;
 }
 
 .district-btn-district:hover {

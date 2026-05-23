@@ -131,6 +131,9 @@
 
 .city-content-city {
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 260px);
 }
 
 .city-content-city h3 {
@@ -145,10 +148,9 @@
 
 .city-content-city p {
     color: #666;
-
     line-height: 1.8;
-
     margin-bottom: 2rem;
+    flex-grow: 1;
 }
 
 /* =========================
@@ -157,24 +159,20 @@
 
 .city-btn-city {
     border: none;
-
     padding:
         0.9rem 1.5rem;
 
     border-radius: 999px;
-
     /* background:
         linear-gradient(135deg,
             #003948,
             #0b5d6b); */
 
     background: #1F4D3A;
-
     color: white;
-
     font-weight: 600;
-
     transition: 0.3s ease;
+    margin-top: auto;
 }
 
 .city-btn-city:hover {

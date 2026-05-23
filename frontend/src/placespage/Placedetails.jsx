@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
-
 import { useParams } from "react-router-dom";
-
 import axios from "axios";
-
 import {
   FaPlaneDeparture,
   FaTrain,
@@ -12,17 +9,42 @@ import {
 } from "react-icons/fa6";
 
 import "./PlaceDetails.css";
+import Gallery from "../components/Gallery/Gallery.jsx";
 
 function PlaceDetails() {
   const { id } = useParams();
-
   const [place, setPlace] = useState(null);
+  const [galleryMedia, setGalleryMedia] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/destination/detail/${id}`)
-      .then((res) => setPlace(res.data))
-      .catch((err) => console.log(err));
+    const fetchPlace = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:8080/destination/detail/${id}`,
+        );
+
+        setPlace(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    const fetchGallery = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/media/place/${id}`,
+        );
+
+        console.log(response.data);
+
+        setGalleryMedia(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchPlace();
+    fetchGallery();
   }, [id]);
 
   if (!place) {
@@ -161,6 +183,7 @@ function PlaceDetails() {
           </div>
         </div>
       </div>
+      <Gallery media={galleryMedia} />
     </div>
   );
 }
