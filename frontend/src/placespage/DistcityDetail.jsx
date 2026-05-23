@@ -6,30 +6,6 @@ import districts from "../data/district";
 import "./DistcityDetail.css";
 
 function DistcityDetail() {
-  const transportData = {
-    city: {
-      air: "Nearest airport available with domestic connectivity and regular flights.",
-
-      train:
-        "Well connected through major Indian Railways routes and nearby junctions.",
-
-      road: "Accessible via national highways and intercity bus services.",
-
-      local: "Auto-rickshaws, taxis, e-rickshaws and local buses available.",
-    },
-
-    district: {
-      air: "Nearest major airport accessible through nearby city connections.",
-
-      train:
-        "Railway stations and nearby junctions provide regional connectivity.",
-
-      road: "Connected through state highways and regional transport routes.",
-
-      local: "Shared autos, local buses and taxis available for daily travel.",
-    },
-  };
-
   const { type, name } = useParams();
 
   let data = [];
@@ -40,7 +16,9 @@ function DistcityDetail() {
     data = districts;
   }
 
-  const item = data.find((i) => i.name.toLowerCase() === name.toLowerCase());
+  const item = data.find(
+    (i) => i.name.toLowerCase() === name.toLowerCase()
+  );
 
   if (!item) {
     return (
@@ -53,7 +31,7 @@ function DistcityDetail() {
   }
 
   const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(
-    item.name,
+    item.name
   )}&output=embed`;
 
   return (
@@ -62,8 +40,7 @@ function DistcityDetail() {
 
       <div className="distcity-hero-distcity">
         <img
-          // src={item.image}
-          src="https://plus.unsplash.com/premium_photo-1673240367277-e1d394465b56?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src="https://plus.unsplash.com/premium_photo-1673240367277-e1d394465b56?q=80&w=1169&auto=format&fit=crop"
           alt={item.name}
           className="distcity-hero-image-distcity"
         />
@@ -71,11 +48,15 @@ function DistcityDetail() {
         <div className="distcity-hero-overlay-distcity"></div>
 
         <div className="distcity-hero-content-distcity">
-          <p className="distcity-subtitle-distcity">EXPLORE MADHYA PRADESH</p>
+          <p className="distcity-subtitle-distcity">
+            EXPLORE MADHYA PRADESH
+          </p>
 
           <h1>{item.name}</h1>
 
-          <p className="distcity-type-distcity">{type.toUpperCase()}</p>
+          <p className="distcity-type-distcity">
+            {type.toUpperCase()}
+          </p>
         </div>
       </div>
 
@@ -85,7 +66,9 @@ function DistcityDetail() {
         {/* DESCRIPTION */}
 
         <div className="distcity-description-wrapper-distcity">
-          <p className="distcity-description-distcity">{item.description}</p>
+          <p className="distcity-description-distcity">
+            {item.description}
+          </p>
         </div>
 
         {/* TRANSPORT SECTION */}
@@ -98,43 +81,51 @@ function DistcityDetail() {
           </div>
 
           <div className="row g-4">
-            <div className="col-lg-6">
+            {/* AIRPORT */}
+
+            <div className="col-md-6">
               <div className="transport-card-distcity">
                 <div className="transport-icon-distcity">✈️</div>
 
-                <h4>By Air</h4>
+                <h4>Nearest Airport</h4>
 
-                <p>{transportData[type].air}</p>
+                <p>{item.transport.airport}</p>
               </div>
             </div>
 
-            <div className="col-lg-6">
+            {/* RAILWAY */}
+
+            <div className="col-md-6">
               <div className="transport-card-distcity">
                 <div className="transport-icon-distcity">🚆</div>
 
-                <h4>By Train</h4>
+                <h4>Nearest Railway Station</h4>
 
-                <p>{transportData[type].train}</p>
+                <p>{item.transport.railway}</p>
               </div>
             </div>
 
-            <div className="col-lg-6">
+            {/* ROAD */}
+
+            <div className="col-md-6">
               <div className="transport-card-distcity">
                 <div className="transport-icon-distcity">🚌</div>
 
                 <h4>By Road</h4>
 
-                <p>{transportData[type].road}</p>
+                <p>{item.transport.road}</p>
               </div>
             </div>
 
-            <div className="col-lg-6">
+            {/* LOCAL */}
+
+            <div className="col-md-6">
               <div className="transport-card-distcity">
                 <div className="transport-icon-distcity">🚕</div>
 
                 <h4>Local Transport</h4>
 
-                <p>{transportData[type].local}</p>
+                <p>{item.transport.local}</p>
               </div>
             </div>
           </div>
