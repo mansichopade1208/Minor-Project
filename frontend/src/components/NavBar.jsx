@@ -1,5 +1,5 @@
 import User from "./User";
-
+import SearchBar from "../components/SearchBar";
 export default function NavBar() {
   return (
     <nav
@@ -55,6 +55,8 @@ export default function NavBar() {
             </li>
 
           </ul>
+            <SearchBar />
+          
 
           {/* User Section */}
           <div className="d-flex align-items-center">
