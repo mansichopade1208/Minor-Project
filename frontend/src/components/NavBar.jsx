@@ -1,5 +1,6 @@
 import User from "./User";
 import { useLocation } from "react-router-dom";
+import SearchBar from "../components/SearchBar";
 
 export default function NavBar() {
   const location = useLocation();
@@ -27,12 +28,9 @@ export default function NavBar() {
             position: absolute;
             left: 0;
             bottom: -4px;
-
             width: 0%;
             height: 2px;
-
             background: #9ad1c4;
-
             transition: width 0.3s ease;
           }
 
@@ -57,14 +55,10 @@ export default function NavBar() {
         style={{
           paddingTop: "1rem",
           paddingBottom: "1rem",
-
           background: "rgba(0, 57, 72, 0.72)",
-
           backdropFilter: "blur(14px)",
           WebkitBackdropFilter: "blur(14px)",
-
           borderBottom: "1px solid rgba(255,255,255,0.08)",
-
           zIndex: 1000,
         }}
       >
@@ -120,8 +114,11 @@ export default function NavBar() {
 
             </ul>
 
+            {/* Search */}
+            <SearchBar />
+
             {/* User Section */}
-            <div className="d-flex align-items-center">
+            <div className="d-flex align-items-center ms-3">
               <User />
             </div>
 

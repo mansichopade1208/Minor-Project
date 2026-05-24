@@ -19,6 +19,7 @@ const experienceRouter = require("./routes/experienceRoute");
 const weatherRouter = require("./routes/weatherRoutes.js") ;
 const authRouter=require("./routes/auth")
 const mediaRouter = require("./routes/mediaRoute.js");
+const searchRoute = require("./routes/searchRoute");
 
 app.get('/', (req, res) => {
     res.send('MP Tourism API is running');
@@ -35,6 +36,7 @@ app.use("/experiences", experienceRouter);
 app.use("/weather", weatherRouter);
 app.use("/auth",authRouter);
 app.use("/media", mediaRouter);
+app.use("/search", searchRoute);
 
 
 mongoose.connect(process.env.MONGO_URI)

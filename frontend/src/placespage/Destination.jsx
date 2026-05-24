@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SearchBar from "../components/SearchBar";
+
 import CategoryCard from "../components/CategoryCard";
 
 import { categoriesData } from "../data/Categories";
@@ -54,11 +54,8 @@ function Destination() {
             Discover The Beauty Of Madhya Pradesh
           </h1>
 
-          {/* SEARCH BAR */}
 
-          <div className="destination-search-wrapper-desti">
-            <SearchBar />
-          </div>
+          
 
           {/* CATEGORY SECTION */}
 
