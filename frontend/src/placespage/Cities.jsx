@@ -7,7 +7,7 @@ function Cities() {
   const navigate = useNavigate();
 
   return (
-    <div className="cities-page-city">
+    <div className="cities-page-city" style={{ paddingTop: "95px" }}>
       <div className="container py-5">
         {/* HEADER */}
 

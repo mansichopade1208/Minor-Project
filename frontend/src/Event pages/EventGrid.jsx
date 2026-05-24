@@ -4,17 +4,17 @@ import "./EventGrid.css";
 export default function EventGrid() {
   const categories = [
     {
-      title: "Cultural Festivals",
+      title: "Festivals",
       image:
         "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1200&auto=format&fit=crop",
-      slug: "cultural",
+      slug: "festival",
     },
 
     {
-      title: "Music Events",
+      title: "Fairs",
       image:
         "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1200&auto=format&fit=crop",
-      slug: "music",
+      slug: "fair",
     },
 
     {
@@ -39,10 +39,10 @@ export default function EventGrid() {
     },
 
     {
-      title: "Tribal Fairs",
+      title: "Cultural events",
       image:
         "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1200&auto=format&fit=crop",
-      slug: "tribal",
+      slug: "cultural",
     },
   ];
 

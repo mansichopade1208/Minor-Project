@@ -4,7 +4,7 @@ import ExperienceHero from "./ExperienceHero";
 
 function EcoTourismDetail({ experience }) {
   return (
-    <ExperienceLayout>
+    <ExperienceLayout >
       {/* HERO */}
       <ExperienceHero
         image={experience.image}

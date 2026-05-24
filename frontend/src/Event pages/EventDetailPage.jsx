@@ -1,140 +1,263 @@
+import { useEffect, useState } from "react";
+
+import { useParams } from "react-router-dom";
+
+import axios from "axios";
+
+import {
+  FaCalendarDays,
+  FaClock,
+  FaLocationDot,
+  FaCheck,
+} from "react-icons/fa6";
+
 import "./EventDetailPage.css";
+import Gallery from "../components/Gallery/Gallery.jsx";
 
 function EventDetailPage() {
-  const event = {
-    title: "Khajuraho Dance Festival",
-    location: "Khajuraho, Madhya Pradesh",
-    image:
-      "https://images.unsplash.com/photo-1511578314322-379afb476865",
-    date: "20 February 2026",
-    time: "6:00 PM Onwards",
-    description:
-      "Experience the grandeur of classical Indian dance performances set against the magnificent backdrop of the Khajuraho temples. The festival brings together renowned artists from across the country, celebrating India’s cultural heritage through music, dance, and art.",
-    highlights: [
-      "Classical Dance Performances",
-      "Live Folk Music",
-      "Traditional Food Stalls",
-      "Cultural Exhibitions",
-      "Evening Light Shows",
-      "Photography Spots",
-    ],
-    gallery: [
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30",
-      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819",
-    ],
-  };
+  const { id } = useParams();
+  const [event, setEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [galleryMedia, setGalleryMedia] = useState([]);
+
+  useEffect(() => {
+    const fetchEvent = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:8080/events/detail/${id}`
+        );
+
+        setEvent(res.data);
+      } catch (err) {
+        console.log("Error fetching event:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    const fetchGallery = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/media/place/${id}`,
+        );
+
+        console.log(response.data);
+
+        setGalleryMedia(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchEvent();
+    fetchGallery();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="event-loading-evdt">
+        Loading Event...
+      </div>
+    );
+  }
+
+  if (!event) {
+    return (
+      <div className="event-loading-evdt">
+        Event Not Found
+      </div>
+    );
+  }
 
   return (
-    <div className="event-page-evtd">
-      {/* HERO */}
-      <section className="event-hero-evtd">
-        <img
-          src={event.image}
-          alt={event.title}
-          className="event-hero-image-evtd"
-        />
+  <div
+    className="event-page-evdt"
+  >
+    {/* HERO */}
 
-        <div className="event-overlay-evtd">
-          <div className="container">
-            <div className="event-hero-content-evtd">
-              <p className="event-subtitle-evtd">
-                CULTURAL EVENT
-              </p>
+    <section className="event-hero-evdt">
+      <img
+        src={event.image}
+        alt={event.name}
+        className="event-hero-image-evdt"
+      />
 
-              <h1>{event.title}</h1>
-
-              <p className="event-location-evtd">
-                📍 {event.location}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CONTENT */}
-      <section className="event-section-evtd">
+      <div className="event-overlay-evdt">
         <div className="container">
-          <div className="event-layout-evtd">
-            {/* LEFT */}
-            <div className="event-main-evtd">
-              <div className="event-block-evtd">
-                <h2>About The Event</h2>
+          <div className="event-hero-content-evdt">
+            <p className="event-subtitle-evdt">
+              EVENT DETAILS
+            </p>
 
-                <p>{event.description}</p>
-              </div>
+            <h1>{event.name}</h1>
 
-              {/* EVENT INFO */}
-              <div className="event-info-grid-evtd">
-                <div className="event-info-card-evtd">
-                  <i className="fa-solid fa-calendar-days"></i>
+            <p className="event-location-evdt">
+              <FaLocationDot />
+              {event.location}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-                  <h4>Date</h4>
+    {/* CONTENT */}
 
-                  <p>{event.date}</p>
+    <section className="event-section-evdt">
+      <div className="container">
+        {/* TAGS */}
+
+        <div className="event-tags-evdt">
+          <span className="active-tag-evdt">
+            {event.type}
+          </span>
+
+          <span>trending</span>
+        </div>
+
+        {/* TWO COLUMN LAYOUT */}
+
+        <div className="event-content-layout-evdt">
+          {/* LEFT */}
+
+          <div className="event-left-evdt">
+            {/* ABOUT */}
+
+            <div className="event-block-evdt">
+              <p className="section-label-evdt">
+                ABOUT
+              </p>
+
+              <h2>About This Event</h2>
+
+              <p className="event-description-evdt">
+                {event.description}
+              </p>
+            </div>
+
+            {/* EVENT INFO */}
+
+            <div className="event-block-evdt">
+              <p className="section-label-evdt">
+                EVENT INFORMATION
+              </p>
+
+              <h2>Event Information</h2>
+
+              <div className="event-info-grid-evdt">
+                <div className="event-info-card-evdt">
+                  <div className="info-icon-evdt">
+                    <FaCalendarDays />
+                  </div>
+
+                  <div>
+                    <h4>Date</h4>
+
+                    <p>
+                      {new Date(
+                        event.date
+                      ).toLocaleDateString(
+                        "en-IN",
+                        {
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        }
+                      )}
+                    </p>
+                  </div>
                 </div>
 
-                <div className="event-info-card-evtd">
-                  <i className="fa-solid fa-clock"></i>
+                <div className="event-info-card-evdt">
+                  <div className="info-icon-evdt">
+                    <FaClock />
+                  </div>
 
-                  <h4>Time</h4>
+                  <div>
+                    <h4>Event Type</h4>
 
-                  <p>{event.time}</p>
+                    <p>{event.type}</p>
+                  </div>
                 </div>
 
-                <div className="event-info-card-evtd">
-                  <i className="fa-solid fa-location-dot"></i>
+                <div className="event-info-card-evdt">
+                  <div className="info-icon-evdt">
+                    <FaLocationDot />
+                  </div>
 
-                  <h4>Venue</h4>
+                  <div>
+                    <h4>Location</h4>
 
-                  <p>{event.location}</p>
-                </div>
-              </div>
-
-              {/* GALLERY */}
-              <div className="event-block-evtd">
-                <h2>Event Gallery</h2>
-
-                <div className="event-gallery-evtd">
-                  {event.gallery.map((img, index) => (
-                    <img
-                      key={index}
-                      src={img}
-                      alt=""
-                    />
-                  ))}
+                    <p>{event.location}</p>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* RIGHT */}
-            <div className="event-sidebar-evtd">
-              <div className="event-sidebar-card-evtd">
-                <h3>Event Highlights</h3>
+          {/* RIGHT */}
 
-                <div className="highlights-list-evtd">
-                  {event.highlights.map((item, index) => (
-                    <div
-                      className="highlight-item-evtd"
-                      key={index}
-                    >
-                      <i className="fa-solid fa-check"></i>
+          <div className="event-right-evdt">
+            <div className="event-block-evdt">
+              <p className="section-label-evdt">
+                HIGHLIGHTS
+              </p>
 
-                      <span>{item}</span>
-                    </div>
-                  ))}
+              <h2>Why Visit This Event?</h2>
+
+              <div className="highlights-column-evdt">
+                <div className="highlight-item-evdt">
+                  <FaCheck />
+
+                  <span>
+                    Traditional cultural
+                    experiences
+                  </span>
                 </div>
 
-                <button className="event-btn-evtd">
-                  Register Event
-                </button>
+                <div className="highlight-item-evdt">
+                  <FaCheck />
+
+                  <span>
+                    Authentic local food &
+                    crafts
+                  </span>
+                </div>
+
+                <div className="highlight-item-evdt">
+                  <FaCheck />
+
+                  <span>
+                    Perfect for photography
+                    lovers
+                  </span>
+                </div>
+
+                <div className="highlight-item-evdt">
+                  <FaCheck />
+
+                  <span>
+                    Vibrant atmosphere &
+                    celebrations
+                  </span>
+                </div>
+
+                <div className="highlight-item-evdt">
+                  <FaCheck />
+
+                  <span>
+                    Explore local traditions &
+                    heritage
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </div>
-  );
+      </div>
+    </section>
+    <Gallery media={galleryMedia} />
+  </div>
+);
 }
 
 export default EventDetailPage;

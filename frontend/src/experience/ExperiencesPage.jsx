@@ -144,7 +144,7 @@ export default function ExperiencesPage() {
   };
 
   return (
-    <div className="experiences-page">
+    <div className="experiences-page" style={{ paddingTop: "95px" }}>
       {/* HEADER */}
 
       <div className="experience-header">

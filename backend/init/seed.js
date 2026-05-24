@@ -4,6 +4,8 @@ const dotenv = require("dotenv");
 const path = require("path")
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
+const Cuisine = require("../models/cuisine.js");
+const cuisineData = require("./cuisineData.js");
 const Art = require("../models/art.js");
 const artData = require("./artData.js");
 
@@ -18,6 +20,9 @@ const seedData = async () => {
   try {
     await Art.deleteMany();
     await Art.insertMany(artData);
+
+    await Cuisine.deleteMany();
+    await Cuisine.insertMany(cuisineData);
 
     console.log("Data Seeded Successfully");
 

@@ -7,7 +7,7 @@ function District() {
   const navigate = useNavigate();
 
   return (
-    <div className="district-page-district">
+    <div className="district-page-district" style={{ paddingTop: "95px" }}>
       <div className="container py-5">
         {/* HEADER */}
 

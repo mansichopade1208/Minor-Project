@@ -149,6 +149,7 @@
   line-height: 2;
   color: #5c665f;
   max-width: 850px;
+  white-space: pre-line;
 }
 
 /* INFO GRID */

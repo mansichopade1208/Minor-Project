@@ -6,14 +6,18 @@ import EcoTourismDetail from "./EcoTourismDetail";
 import CuisineDetail from "./CuisineDetail";
 import ArtFormDetail from "./ArtFormDetail";
 
+import Gallery from "../components/Gallery/Gallery.jsx";
+
 function ExperienceDetails() {
   const { type, id } = useParams();
 
   const [experience, setExperience] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [galleryMedia, setGalleryMedia] = useState([]);
 
   useEffect(() => {
     fetchExperienceDetail();
+    fetchGallery();
   }, [type, id]);
 
   const fetchExperienceDetail = async () => {
@@ -29,6 +33,20 @@ function ExperienceDetails() {
       setLoading(false);
     }
   };
+
+  const fetchGallery = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/media/place/${id}`,
+        );
+
+        console.log(response.data);
+
+        setGalleryMedia(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
   if (loading) {
     return <div className="exp-loader">Loading experience...</div>;
@@ -50,7 +68,12 @@ function ExperienceDetails() {
 
   const Component = componentMap[type] || EcoTourismDetail;
 
-  return <Component experience={experience} />;
+  return (
+  <>
+  <Component experience={experience} />
+  <Gallery media={galleryMedia} />
+  </>
+  );
 }
 
 export default ExperienceDetails;

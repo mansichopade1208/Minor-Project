@@ -10,7 +10,7 @@ function EmergencyContact() {
 
   return (
 
-    <div className="helpline-page">
+    <div className="helpline-page" style={{ paddingTop: "95px" }}>
 
       <div className="container py-5">
 

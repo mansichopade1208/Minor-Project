@@ -1,79 +1,103 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 import "./CategoryEventsPage.css";
 
 export default function CategoryEventsPage() {
   const { category } = useParams();
+  const navigate = useNavigate();
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Temporary Dummy Data
-  const events = [
-    {
-      id: 1,
-      title: "Folk Music Festival",
-      image:
-        "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1200&auto=format&fit=crop",
-      category: "music",
-    },
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:8080/events/type/${category}`,
+        );
 
-    {
-      id: 2,
-      title: "Classical Night Concert",
-      image:
-        "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1200&auto=format&fit=crop",
-      category: "music",
-    },
+        setEvents(res.data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    {
-      id: 3,
-      title: "Tribal Dance Celebration",
-      image:
-        "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1200&auto=format&fit=crop",
-      category: "cultural",
-    },
-
-    {
-      id: 4,
-      title: "Street Food Carnival",
-      image:
-        "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1200&auto=format&fit=crop",
-      category: "food",
-    },
-  ];
-
-  // Filter Events by Category
-  const filteredEvents = events.filter((event) => event.category === category);
+    fetchEvents();
+  }, [category]);
 
   return (
-    <div className="category-page">
-      {/* HERO SECTION */}
-      <section className="category-hero">
-        <div className="container text-center text-white">
-          <h1 className="category-title">
+    <div className="events-page" style={{ paddingTop: "90px" }}>
+      {/* HERO */}
+
+      <section className="events-hero">
+        <div className="container text-center">
+          <p className="events-subtitle">EXPLORE MADHYA PRADESH</p>
+
+          <h1 className="events-title">
             {category.charAt(0).toUpperCase() + category.slice(1)} Events
           </h1>
 
-          <p className="category-description">
-            Explore unforgettable experiences and celebrations across Madhya
-            Pradesh.
+          <p className="events-description">
+            Discover heritage festivals, cultural celebrations, food fairs and
+            unforgettable experiences across Madhya Pradesh.
           </p>
         </div>
       </section>
 
-      {/* EVENTS GRID */}
-      <section className="category-events py-5">
-        <div className="container">
-          <div className="row g-4">
-            {filteredEvents.map((event) => (
-              <div className="col-md-6 col-lg-4" key={event.id}>
-                <div className="event-portrait-card">
-                  <img src={event.image} alt={event.title} />
+      {/* EVENTS */}
 
-                  <div className="event-overlay">
-                    <h3>{event.title}</h3>
+      <section className="events-section">
+        <div className="container">
+          {loading ? (
+            <div className="text-center py-5">
+              <h3>Loading Events...</h3>
+            </div>
+          ) : events.length === 0 ? (
+            <div className="text-center py-5">
+              <h3>No Events Found</h3>
+            </div>
+          ) : (
+            <div className="row g-4">
+              {events.map((event) => (
+                <div className="col-md-6 col-lg-4" key={event._id}>
+                  <div className="modern-event-card">
+                    {/* IMAGE */}
+
+                    <div className="event-image-wrapper">
+                      <img src={event.image} alt={event.name} />
+                    </div>
+
+                    {/* CONTENT */}
+
+                    <div className="event-content">
+                      <h3>{event.name}</h3>
+
+                      <p className="event-location">📍 {event.location}</p>
+
+                      <p className="event-date">
+                        📅{" "}
+                        {new Date(event.date).toLocaleDateString("en-IN", {
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        })}
+                      </p>
+
+                      <button
+                        className="explore-btn"
+                        onClick={() => navigate(`/events/detail/${event._id}`)}
+                      >
+                        Explore Event
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </div>

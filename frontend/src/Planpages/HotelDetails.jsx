@@ -13,11 +13,12 @@ import {
 } from "react-icons/fa6";
 
 import "./HotelDetails.css";
+import Gallery from "../components/Gallery/Gallery.jsx";
 
 function HotelDetails() {
   const { id } = useParams();
-
   const [hotel, setHotel] = useState(null);
+  const [galleryMedia, setGalleryMedia] = useState([]);
 
   useEffect(() => {
     const fetchHotel = async () => {
@@ -32,7 +33,22 @@ function HotelDetails() {
       }
     };
 
+    const fetchGallery = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/media/place/${id}`,
+        );
+
+        console.log(response.data);
+
+        setGalleryMedia(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     fetchHotel();
+    fetchGallery();
   }, [id]);
 
   if (!hotel) {
@@ -142,6 +158,7 @@ function HotelDetails() {
           </div>
         </div>
       </div>
+      <Gallery media={galleryMedia} />
     </div>
   );
 }

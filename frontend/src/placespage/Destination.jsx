@@ -39,7 +39,7 @@ function Destination() {
   ];
 
   return (
-    <div className="destination-page-desti">
+    <div className="destination-page-desti" style={{ paddingTop: "95px" }}>
 
       {/* HEADER */}
 

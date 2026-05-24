@@ -1,8 +1,36 @@
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import "./PopularDestinations.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function PopularDestinations() {
   const scrollRef = useRef();
+
+  const navigate = useNavigate();
+
+  const [destinations, setDestinations] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+
+  // FETCH DESTINATIONS FROM DB
+  useEffect(() => {
+    const fetchDestinations = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:8080/destination"
+        );
+        console.log(res.data);
+        // SHOW ONLY FIRST 6 DESTINATIONS
+        setDestinations(res.data.slice(0, 6));
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDestinations();
+  }, []);
 
   // SCROLL LEFT
   const scrollLeft = () => {
@@ -20,47 +48,15 @@ export default function PopularDestinations() {
     });
   };
 
-  const destinations = [
-    {
-      name: "Khajuraho",
-      description:
-        "Ancient temples, stunning architecture and rich cultural heritage.",
-      image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da",
-    },
-
-    {
-      name: "Kanha National Park",
-      description:
-        "Dense forests, wildlife safaris and breathtaking biodiversity.",
-      image: "https://images.unsplash.com/photo-1546182990-dffeafbe841d",
-    },
-
-    {
-      name: "Pachmarhi",
-      description:
-        "Waterfalls, caves and serene eco-tourism experiences in nature.",
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
-    },
-
-    {
-      name: "Sanchi",
-      description:
-        "Historic Buddhist monuments and peaceful spiritual atmosphere.",
-      image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952",
-    },
-
-    {
-      name: "Mandu",
-      description: "Majestic forts, Afghan architecture and timeless beauty.",
-      image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819",
-    },
-
-    {
-      name: "Bhedaghat",
-      description: "Marble rocks, river views and scenic natural landscapes.",
-      image: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a",
-    },
-  ];
+  if (loading) {
+    return (
+      <section className="popular-destinations-section">
+        <div className="container">
+          <h2>Loading destinations...</h2>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="popular-destinations-section">
@@ -68,21 +64,31 @@ export default function PopularDestinations() {
         {/* HEADING */}
         <div className="destinations-header">
           <div>
-            <p className="destination-tag">Popular Destinations</p>
+            <p className="destination-tag">
+              Popular Destinations
+            </p>
 
-            <h2>Discover The Beauty Of Madhya Pradesh</h2>
+            <h2>
+              Discover The Beauty Of Madhya Pradesh
+            </h2>
           </div>
         </div>
 
         {/* DESTINATION CARDS */}
-        <div className="destinations-wrapper" ref={scrollRef}>
-          {destinations.map((destination, index) => (
+        <div
+          className="destinations-wrapper"
+          ref={scrollRef}
+        >
+          {destinations.map((destination) => (
             <div
               className="destination-card"
-              key={index}
+              key={destination._id}
               style={{
                 backgroundImage: `url(${destination.image})`,
               }}
+              onClick={() =>
+                navigate(`/place/${destination._id}`)
+              }
             >
               <div className="destination-overlay">
                 <div className="destination-content">
@@ -90,7 +96,9 @@ export default function PopularDestinations() {
 
                   <p>{destination.description}</p>
 
-                  <span className="read-more">Read More →</span>
+                  <span className="read-more">
+                    Read More →
+                  </span>
                 </div>
               </div>
             </div>
@@ -101,13 +109,20 @@ export default function PopularDestinations() {
         <div className="destination-controls">
           {/* ARROWS */}
           <div className="slider-arrows">
-            <button onClick={scrollLeft}>←</button>
+            <button onClick={scrollLeft}>
+              ←
+            </button>
 
-            <button onClick={scrollRight}>→</button>
+            <button onClick={scrollRight}>
+              →
+            </button>
           </div>
 
           {/* BUTTON */}
-          <button className="btn btn-outline-success explore-btn-pd">
+          <button
+            className="btn btn-outline-success explore-btn-pd"
+            onClick={() => navigate("/destination")}
+          >
             Explore More
           </button>
         </div>

@@ -7,7 +7,7 @@ const getExperiences = async (req, res) => {
     const artforms = await Arts.find().limit(8);
     const cuisines = await Cuisine.find().limit(8);
     const ecoTourism = await Place.find({
-      category: "eco-tourism",
+      type: "ecotourism",
     }).limit(8);
 
     res.json({

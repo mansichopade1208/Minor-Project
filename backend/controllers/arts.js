@@ -3,9 +3,8 @@ const Art = require("../models/art");
 module.exports.allArts = async (req, res) => {
 
   try {
-    // const arts = await Art.find({});
-    // res.json(arts);
-    res.send("arts")
+    const arts = await Art.find({});
+    res.json(arts);
   } catch (error) {
     res.status(500).json({
       message: error.message
