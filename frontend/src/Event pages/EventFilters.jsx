@@ -51,11 +51,18 @@ export default function EventFilters() {
                 onChange={handleChange}
               >
                 <option value="">Category</option>
-                <option value="Cultural">Cultural</option>
-                <option value="Music">Music</option>
-                <option value="Religious">Religious</option>
+
+                <option value="Festival">Festival</option>
+
+                <option value="Fair">Fair</option>
+
                 <option value="Food">Food</option>
+
+                <option value="Religious">Religious</option>
+
                 <option value="Adventure">Adventure</option>
+
+                <option value="Cultural">Cultural</option>
               </select>
             </div>
 

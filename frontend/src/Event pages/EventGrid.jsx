@@ -6,42 +6,42 @@ export default function EventGrid() {
     {
       title: "Festivals",
       image:
-        "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1200&auto=format&fit=crop",
+        "festival.jpg",
       slug: "festival",
     },
 
     {
       title: "Fairs",
       image:
-        "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1200&auto=format&fit=crop",
+        "fair.jpg",
       slug: "fair",
     },
 
     {
       title: "Food Festivals",
       image:
-        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1200&auto=format&fit=crop",
+        "food.jpeg",
       slug: "food",
     },
 
     {
       title: "Religious Events",
       image:
-        "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=1200&auto=format&fit=crop",
+        "religious.jpg",
       slug: "religious",
     },
 
     {
       title: "Adventure Events",
       image:
-        "https://images.unsplash.com/photo-1522163182402-834f871fd851?q=80&w=1200&auto=format&fit=crop",
+        "adventure.jpeg",
       slug: "adventure",
     },
 
     {
       title: "Cultural events",
       image:
-        "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1200&auto=format&fit=crop",
+        "cultural.jpeg",
       slug: "cultural",
     },
   ];

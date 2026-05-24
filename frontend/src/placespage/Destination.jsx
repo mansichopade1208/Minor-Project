@@ -53,9 +53,8 @@ function Destination() {
           <h1 className="destination-title-desti">
             Discover The Beauty Of Madhya Pradesh
           </h1>
-
-
-          
+          <br></br>
+            <br></br>
 
           {/* CATEGORY SECTION */}
 

@@ -85,7 +85,7 @@ function ItineraryResult() {
   };
 
   return (
-    <div className="itinerary-page-iteresult">
+    <div className="itinerary-page-iteresult" style={{ paddingTop: "95px" }}>
       <div
         className="
           container

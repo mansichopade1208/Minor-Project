@@ -59,7 +59,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <h1>{data.message}</h1>
-      <QuickExplore />
+      {/* <QuickExplore /> */}
       <TrendingEvents />
       <ExperiencesHome />
       <UpcomingEvents />

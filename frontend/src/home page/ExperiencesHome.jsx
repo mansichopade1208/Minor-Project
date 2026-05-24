@@ -1,46 +1,52 @@
 import { useState } from "react";
 import "./ExperiencesHome.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Experiences() {
   const experiences = [
     {
-      title: "Local Cuisine Trails",
+      title: "Cuisine",
+
       description:
-        "Experience authentic flavors and traditional recipes from local communities.",
+        "Experience authentic flavors and traditional recipes from across Madhya Pradesh.",
+
       image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836",
+
+      link: "/experiences",
+
+      tab: "cuisine",
     },
 
     {
-      title: "Wildlife Safari",
+      title: "Ecotourism",
+
       description:
-        "Explore forests and witness majestic wildlife in their natural habitat.",
+        "Explore forests, wildlife safaris, waterfalls and breathtaking natural landscapes.",
+
       image: "https://images.unsplash.com/photo-1546182990-dffeafbe841d",
+
+      link: "/experiences",
+
+      tab: "ecoTourism",
     },
 
     {
-      title: "Heritage Walks",
-      description:
-        "Walk through ancient temples, forts and UNESCO heritage sites.",
-      image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da",
-    },
+      title: "Artforms",
 
-    {
-      title: "Tribal Art Workshops",
       description:
-        "Learn traditional tribal art and handicrafts from local artisans.",
+        "Discover tribal paintings, handicrafts and traditional cultural artforms.",
+
       image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952",
-    },
 
-    {
-      title: "Nature Trails",
-      description:
-        "Discover rivers, forests and eco-tourism destinations across Madhya Pradesh.",
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+      link: "/experiences",
+
+      tab: "artforms",
     },
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const navigate = useNavigate();
 
   // NEXT
   const nextSlide = () => {
@@ -92,13 +98,21 @@ export default function Experiences() {
                   className="experience-card active-card"
                   style={{
                     backgroundImage: `url(${activeExperience.image})`,
+                    cursor: "pointer",
                   }}
+                  onClick={() =>
+                    navigate(activeExperience.link, {
+                      state: {
+                        activeTab: activeExperience.tab,
+                      },
+                    })
+                  }
                 >
                   <div className="card-overlay">
                     <div>
-                      <h4>{activeExperience.title}</h4>
-
-                      <p>{activeExperience.description}</p>
+                      <h4 className="experience-card-title">
+                        {activeExperience.title}
+                      </h4>
                     </div>
                   </div>
                 </div>
@@ -108,13 +122,21 @@ export default function Experiences() {
                   className="experience-card"
                   style={{
                     backgroundImage: `url(${secondCard.image})`,
+                    cursor: "pointer",
                   }}
+                  onClick={() =>
+                    navigate(secondCard.link, {
+                      state: {
+                        activeTab: secondCard.tab,
+                      },
+                    })
+                  }
                 >
                   <div className="card-overlay">
                     <div>
-                      <h4>{secondCard.title}</h4>
-
-                      <p>{secondCard.description}</p>
+                      <h4 className="experience-card-title">
+                        {secondCard.title}
+                      </h4>
                     </div>
                   </div>
                 </div>

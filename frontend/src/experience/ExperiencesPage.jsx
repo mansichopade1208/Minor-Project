@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./ExperiencesPage.css";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import axios from "axios";
 
@@ -124,7 +125,12 @@ export default function ExperiencesPage() {
     artforms: [],
     cuisine: [],
   });
-  const [activeTab, setActiveTab] = useState("ecoTourism");
+  const location = useLocation();
+
+const [activeTab, setActiveTab] = useState(
+  location.state?.activeTab || "ecoTourism"
+);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -143,6 +149,7 @@ export default function ExperiencesPage() {
     }
   };
 
+  
   return (
     <div className="experiences-page" style={{ paddingTop: "95px" }}>
       {/* HEADER */}

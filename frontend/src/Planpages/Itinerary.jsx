@@ -46,6 +46,7 @@ function Itinerary() {
   };
 
   return (
+    <div style={{ paddingTop: "75px" }}>
     <div className="itegen-page-pp d-flex align-items-center justify-content-center py-5">
       <div className="container">
         <div className="row justify-content-center">
@@ -185,6 +186,7 @@ function Itinerary() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

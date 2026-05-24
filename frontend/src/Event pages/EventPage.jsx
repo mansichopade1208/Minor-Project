@@ -7,7 +7,7 @@ export default function EventPage() {
   return (
     <>
       <EventsHeader/>
-      <EventFilters/>
+      {/* <EventFilters/> */}
       <EventGrid/>
     </>
   );
