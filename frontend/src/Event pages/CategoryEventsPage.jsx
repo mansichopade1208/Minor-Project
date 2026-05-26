@@ -72,7 +72,7 @@ export default function CategoryEventsPage() {
 
                     {/* CONTENT */}
 
-                    <div className="event-content">
+                    <div className="event-content-catp">
                       <h3>{event.name}</h3>
 
                       <p className="event-location">📍 {event.location}</p>

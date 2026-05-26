@@ -97,11 +97,11 @@
 
 /* CONTENT */
 
-.event-content {
+.event-content-catp {
   padding: 28px;
 }
 
-.event-content h3 {
+.event-content-catp h3 {
   font-size: 1.9rem;
 
   font-weight: 700;
@@ -184,7 +184,7 @@
     height: 220px;
   }
 
-  .event-content h3 {
+  .event-content-catp h3 {
     font-size: 1.5rem;
   }
 }
